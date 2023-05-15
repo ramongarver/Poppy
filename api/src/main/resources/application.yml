@@ -1,0 +1,19 @@
+spring:
+  banner:
+    location: classpath:/banner.txt
+  datasource:
+    url: jdbc:mysql://localhost:3306/poppy
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true;
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+jwt:
+  secret-key: ${JWT_SECRET_KEY}

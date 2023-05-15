@@ -210,4 +210,7 @@ sketch
 .history
 .ionide
 
+# Minimal template directory
+minimal-template
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,java,nextjs,react
