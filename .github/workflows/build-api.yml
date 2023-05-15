@@ -1,4 +1,4 @@
-name: Build Spring Boot API
+name: Build and test Spring Boot API
 
 on:
   push:
@@ -11,10 +11,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  build-and-test:
+    name: Build and test
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -31,7 +30,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: Build with Maven
+    - name: Build and test with Maven
       run: mvn -B package --file api/pom.xml
       env: 
         JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
