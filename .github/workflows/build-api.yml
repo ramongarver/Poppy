@@ -22,7 +22,7 @@ jobs:
       run: |
         echo "Current environment: $ENVIRONMENT"
         echo "Secret value: ${{ secrets.DB_USERNAME }}"
-        echo "Variable value: ${{ env.DB_HOST }}"
+        echo "Variable value: ${{ vars.DB_HOST }}"
     
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -42,9 +42,9 @@ jobs:
     - name: Build and test with Maven
       run: mvn -B package --file api/pom.xml
       env: 
-        DB_HOST: ${{ env.DB_HOST }}
-        DB_PORT: ${{ env.DB_PORT }}
-        DB_NAME: ${{ env.DB_NAME }}
+        DB_HOST: ${{ vars.DB_HOST }}
+        DB_PORT: ${{ vars.DB_PORT }}
+        DB_NAME: ${{ vars.DB_NAME }}
         DB_USERNAME: ${{ secrets.DB_USERNAME }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
