@@ -73,5 +73,5 @@ jobs:
       with:
         context: api/
         push: true
-        tags: ${{ secrets.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ env.CURRENT_DATE }}-${{ github.sha }}
+        tags: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ env.CURRENT_DATE }}-${{ github.sha }}
 
