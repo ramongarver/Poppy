@@ -14,11 +14,9 @@ jobs:
   build-and-test:
     name: Build and test
     runs-on: ubuntu-latest
+    environment: PRODUCTION
     
     steps:
-    - name: Set environment variable
-      run: echo "ENVIRONMENT=PRODUCTION" >> $GITHUB_ENV
-
     - name: Access secrets and variables
       run: |
         echo "Current environment: $ENVIRONMENT"
