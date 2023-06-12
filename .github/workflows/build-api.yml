@@ -40,7 +40,7 @@ jobs:
         cache: 'maven'
         
     - name: Clean and validate Maven project
-      run: mvn clean validate
+      run: mvn clean validate --file api/pom.xml
 
     - name: Run Unit tests
       run: mvn test
