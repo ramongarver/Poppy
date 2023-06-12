@@ -71,7 +71,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
-        context: "{{defaultContext}}:api"
+        context: api/
         push: true
         tags: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ env.CURRENT_DATE }}-${{ github.sha }}
 
