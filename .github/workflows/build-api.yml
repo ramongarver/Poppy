@@ -14,7 +14,17 @@ jobs:
   build-and-test:
     name: Build and test
     runs-on: ubuntu-latest
+    
     steps:
+    - name: Set environment variable
+      run: echo "ENVIRONMENT=PRODUCTION" >> $GITHUB_ENV
+
+    - name: Access secrets and variables
+      run: |
+        echo "Current environment: $ENVIRONMENT"
+        echo "Secret value: ${{ secrets.DB_USERNAME }}"
+        echo "Variable value: ${{ env.DB_HOST }}"
+    
     - name: Checkout repository
       uses: actions/checkout@v3
     
@@ -28,9 +38,14 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: maven
+        cache: 'maven'
     
     - name: Build and test with Maven
       run: mvn -B package --file api/pom.xml
       env: 
+        DB_HOST: ${{ env.DB_HOST }}
+        DB_PORT: ${{ env.DB_PORT }}
+        DB_NAME: ${{ env.DB_NAME }}
+        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
