@@ -64,11 +64,14 @@ jobs:
         registry: ${{ vars.ACR_REGISTRY }}.azurecr.io
         username: ${{ secrets.AZURE_CLIENT_ID }}
         password: ${{ secrets.AZURE_CLIENT_SECRET }}
-      
+    
+    - name: Get the current date
+      run: echo "CURRENT_DATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
         context: api/
         push: true
-        tags: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-$(date +%Y%m%d%H%M%S)-${{ github.sha }}
+        tags: ${{ secrets.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ env.CURRENT_DATE }}-${{ github.sha }}
 
