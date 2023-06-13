@@ -78,17 +78,31 @@ jobs:
       with:
         context: api/
         push: true
-        tags: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ env.CURRENT_DATE }}-${{ github.sha }}
+        tags: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ github.sha }}
         build-args: SPRING_PROFILE=${{ vars.SPRING_PROFILE }}
+  
+  deploy-to-production:
+      name: Deploy to production
+      if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch' }}
+      needs: build-and-test
+      runs-on: ubuntu-latest
+      environment: PRODUCTION
+      steps:
+        - name: Login to Azure
+          run: |
+            az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
-    - name: Login to Azure
-      run: |
-        az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+        - name: Set environment variables in Azure
+          run: |
+            az webapp config appsettings set --name poppyapi --resource-group Poppy --settings SPRING_PROFILES_ACTIVE="${{ vars.SPRING_PROFILE }}" DB_HOST="${{ vars.DB_HOST }}" DB_PORT="${{ vars.DB_PORT }}" DB_NAME="${{ vars.DB_NAME }}" DB_USERNAME="${{ secrets.DB_USERNAME }}" DB_PASSWORD="${{ secrets.DB_PASSWORD }}" JWT_SECRET_KEY="${{ secrets.JWT_SECRET_KEY }}"
 
-    - name: Set environment variables in Azure
-      run: |
-        az webapp config appsettings set --name poppyapi --resource-group Poppy --settings SPRING_PROFILES_ACTIVE="${{ vars.SPRING_PROFILE }}" DB_HOST="${{ vars.DB_HOST }}" DB_PORT="${{ vars.DB_PORT }}" DB_NAME="${{ vars.DB_NAME }}" DB_USERNAME="${{ secrets.DB_USERNAME }}" DB_PASSWORD="${{ secrets.DB_PASSWORD }}" JWT_SECRET_KEY="${{ secrets.JWT_SECRET_KEY }}"
-        
-    - name: Logout from Azure
-      run: az logout
+        - name: Deploy to production
+          id: deploy-to-appservice
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: poppyapi
+            images: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ github.sha }}
 
+        - name: Logout from Azure
+          run: az logout
+      
