@@ -93,3 +93,7 @@ jobs:
     - name: Set environment variables in Azure
       run: |
         az webapp config appsettings set --name poppyapi --resource-group Poppy --settings SPRING_PROFILES_ACTIVE="${{ vars.SPRING_PROFILE }}" DB_HOST="${{ vars.DB_HOST }}" DB_PORT="${{ vars.DB_PORT }}" DB_NAME="${{ vars.DB_NAME }}" DB_USERNAME="${{ secrets.DB_USERNAME }}" DB_PASSWORD="${{ secrets.DB_PASSWORD }}" JWT_SECRET_KEY="${{ secrets.JWT_SECRET_KEY }}"
+        
+    - name: Logout from Azure
+      run: az logout
+
