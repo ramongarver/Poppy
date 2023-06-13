@@ -86,3 +86,10 @@ jobs:
         tags: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ env.CURRENT_DATE }}-${{ github.sha }}
         build-args: SPRING_PROFILE=${{ vars.SPRING_PROFILE }}
 
+    - name: Login to Azure
+      run: |
+        az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+    - name: Set environment variables in Azure
+      run: |
+        az webapp config appsettings set --name poppyapi --resource-group Poppy --settings SPRING_PROFILES_ACTIVE="${{ vars.SPRING_PROFILE }}" DB_HOST="${{ vars.DB_HOST }}" DB_PORT="${{ vars.DB_PORT }}" DB_NAME="${{ vars.DB_NAME }}" DB_USERNAME="${{ secrets.DB_USERNAME }}" DB_PASSWORD="${{ secrets.DB_PASSWORD }}" JWT_SECRET_KEY="${{ secrets.JWT_SECRET_KEY }}"
