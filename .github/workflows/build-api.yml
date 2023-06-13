@@ -74,4 +74,5 @@ jobs:
         context: api/
         push: true
         tags: ${{ vars.ACR_REGISTRY }}.azurecr.io/poppyapi:latest-${{ env.CURRENT_DATE }}-${{ github.sha }}
+        build-args: SPRING_PROFILE=${{ vars.SPRING_PROFILE }}
 
