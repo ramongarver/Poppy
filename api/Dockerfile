@@ -35,5 +35,9 @@ RUN chown -R poppy:poppy /app
 # Switch to the 'poppy' user for any subsequent instructions
 USER poppy
 
+# Assign the spring profile to be used when running the container
+ARG SPRING_PROFILE
+ENV SPRING_PROFILES_ACTIVE=$SPRING_PROFILE
+
 # Run the Java application when a container is launched from the image
 CMD ["java", "-jar", "api-0.0.1-SNAPSHOT.jar"]
