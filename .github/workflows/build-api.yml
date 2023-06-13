@@ -20,9 +20,13 @@ jobs:
     steps:
     - name: Access secrets and variables
       run: |
-        echo "Current environment: $ENVIRONMENT"
-        echo "Secret value: ${{ secrets.DB_USERNAME }}"
-        echo "Variable value: ${{ vars.DB_HOST }}"
+        echo "SPRING_PROFILE: ${{ vars.SPRING_PROFILE }}"      
+        echo "DB_HOST: ${{ vars.DB_HOST }}"
+        echo "DB_PORT: ${{ vars.DB_PORT }}"
+        echo "DB_NAME: ${{ vars.DB_NAME }}"
+        echo "DB_USERNAME: ${{ secrets.DB_USERNAME }}"
+        echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
+        echo "JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}"
     
     - name: Checkout repository
       uses: actions/checkout@v3
