@@ -54,9 +54,12 @@ jobs:
         DB_USERNAME: ${{ secrets.DB_USERNAME }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
-    
+  
+    - name: Move JAR
+      run: mv api/target/api-0.0.1-SNAPSHOT.jar api/api-0.0.1-SNAPSHOT.jar
+  
     - name: List files in api/target/
-      run: ls -l api/target/
+      run: ls -l api/
       
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
