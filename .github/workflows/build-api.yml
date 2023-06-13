@@ -55,6 +55,9 @@ jobs:
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
     
+    - name: List files in api/target/
+      run: ls -l api/target/
+      
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
       
