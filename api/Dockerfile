@@ -8,7 +8,7 @@ RUN mkdir /app
 RUN addgroup -S poppy && adduser -S poppy -G poppy
 
 # Copy the 'poppy-api.jar' file from the host to the 'app' directory in the image
-COPY ./api/target/api-0.0.1-SNAPSHOT.jar /app/api-0.0.1-SNAPSHOT.jar
+COPY ./target/api-0.0.1-SNAPSHOT.jar /app/api-0.0.1-SNAPSHOT.jar
 
 # Set the working directory for any subsequent instructions to '/app'
 WORKDIR /app
