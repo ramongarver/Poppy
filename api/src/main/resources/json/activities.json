@@ -1,0 +1,12 @@
+[
+  {
+    "name": "First activity",
+    "description": "This is the description of the first activity",
+    "localDateTime": "2023-06-08T00:00:00"
+  },
+  {
+    "name": "Second activity",
+    "description": "This is the description of the second activity",
+    "localDateTime": "2023-06-08T00:00:00"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Salud, Bienestar y Deportes",
+    "shortName": "SByD",
+    "description": "Grupo de trabajo de Salud, Bienestar y Deportes",
+    "volunteers": []
+  },
+  {
+    "name": "Inclusión Social",
+    "shortName": "Inclusión Social",
+    "description": "Grupo de trabajo de Inclusión Social",
+    "volunteers": []
+  },
+  {
+    "name": "Fiestas",
+    "shortName": "Fiestas",
+    "description": "Grupo de trabajo de Fiestas",
+    "volunteers": []
+  },
+  {
+    "name": "Cultural",
+    "shortName": "Cultural",
+    "description": "Grupo de trabajo de Cultural",
+    "volunteers": []
+  }
+]

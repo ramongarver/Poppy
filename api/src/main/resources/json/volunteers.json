@@ -1,0 +1,794 @@
+[
+    {
+        "firstName": "Pablo",
+        "lastName": "Ramirez Varela",
+        "email": "pablo.ramirez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Raul",
+        "lastName": "Martinez Lara",
+        "email": "raul.martinez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Vicente",
+        "lastName": "Alarcon Zamora",
+        "email": "vicente.alarcon@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Lorena",
+        "lastName": "Pereira Pardo",
+        "email": "lorena.pereira@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Ramon",
+        "lastName": "Alvarez Fuentes",
+        "email": "ramon.alvarez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Rodrigo",
+        "lastName": "Soriano Bueno",
+        "email": "rodrigo.soriano@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Nerea",
+        "lastName": "Garrido Duran",
+        "email": "nerea.garrido@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Enrique",
+        "lastName": "Jimenez Gallardo",
+        "email": "enrique.jimenez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Jose",
+        "lastName": "Blanco Serra",
+        "email": "jose.blanco@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Jose",
+        "lastName": "Molina Herrero",
+        "email": "jose.molina@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Marta",
+        "lastName": "Esteban Caballero",
+        "email": "marta.esteban@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Andres",
+        "lastName": "Lorenzo Prieto",
+        "email": "andres.lorenzo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Rosa",
+        "lastName": "Gimenez Velasco",
+        "email": "rosa.gimenez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Adriana",
+        "lastName": "Palacios Esteban",
+        "email": "adriana.palacios@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Alejandro",
+        "lastName": "Camacho Contreras",
+        "email": "alejandro.camacho@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Marta",
+        "lastName": "Redondo Martinez",
+        "email": "marta.redondo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Lorena",
+        "lastName": "Gonzalez Serrano",
+        "email": "lorena.gonzalez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Alfredo",
+        "lastName": "Ortega Roman",
+        "email": "alfredo.ortega@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Rueda Acosta",
+        "email": "maria.rueda@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Diego",
+        "lastName": "Santana Martin",
+        "email": "diego.santana@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Veronica",
+        "lastName": "Sierra Fuentes",
+        "email": "veronica.sierra@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Francisca",
+        "lastName": "Carrasco Vazquez",
+        "email": "francisca.carrasco@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Ramos Iglesias",
+        "email": "maria.ramos@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Felipe",
+        "lastName": "Zamora Alonso",
+        "email": "felipe.zamora@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Consuelo",
+        "lastName": "Fernandez Vargas",
+        "email": "consuelo.fernandez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Victor",
+        "lastName": "Romero Marquez",
+        "email": "victor.romero@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Elena",
+        "lastName": "Tomas Castillo",
+        "email": "elena.tomas@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Veronica",
+        "lastName": "Herrero Vega",
+        "email": "veronica.herrero@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Martina",
+        "lastName": "Cuesta Hernandez",
+        "email": "martina.cuesta@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Felix",
+        "lastName": "Miguel Fernandez",
+        "email": "felix.miguel@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Joan",
+        "lastName": "Camacho Garcia",
+        "email": "joan.camacho@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Cristian",
+        "lastName": "Carrasco Roldan",
+        "email": "cristian.carrasco@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Clara",
+        "lastName": "Rueda Benitez",
+        "email": "clara.rueda@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Lidia",
+        "lastName": "Moya Gonzalez",
+        "email": "lidia.moya@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Raquel",
+        "lastName": "Gallego Gutierrez",
+        "email": "raquel.gallego@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Alvaro",
+        "lastName": "Carrillo Lazaro",
+        "email": "alvaro.carrillo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Daniel",
+        "lastName": "Hidalgo Soriano",
+        "email": "daniel.hidalgo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Javier",
+        "lastName": "Miguel Paredes",
+        "email": "javier.miguel@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Natalia",
+        "lastName": "Mora Rivas",
+        "email": "natalia.mora@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Vargas Saez",
+        "email": "maria.vargas@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Amparo",
+        "lastName": "Lopez Reyes",
+        "email": "amparo.lopez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Susana",
+        "lastName": "Macias Marcos",
+        "email": "susana.macias@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Cristina",
+        "lastName": "Vargas Guillen",
+        "email": "cristina.vargas@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Julian",
+        "lastName": "Nieto Espinosa",
+        "email": "julian.nieto@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Miguel",
+        "lastName": "Macias Castillo",
+        "email": "miguel.macias@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Martina",
+        "lastName": "Garcia Jimenez",
+        "email": "martina.garcia@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Alvaro",
+        "lastName": "Gutierrez Mendoza",
+        "email": "alvaro.gutierrez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Alonso Pardo",
+        "email": "maria.alonso@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Fernando",
+        "lastName": "Espinosa Guerra",
+        "email": "fernando.espinosa@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Javier",
+        "lastName": "Crespo Alonso",
+        "email": "javier.crespo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Irene",
+        "lastName": "Alvarez Zamora",
+        "email": "irene.alvarez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Alfredo",
+        "lastName": "Alvarez Suarez",
+        "email": "alfredo.alvarez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Cesar",
+        "lastName": "Esteban Castillo",
+        "email": "cesar.esteban@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Alex",
+        "lastName": "Simon Vargas",
+        "email": "alex.simon@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Esteban Guillen",
+        "email": "maria.esteban@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Emilio",
+        "lastName": "Marti Reyes",
+        "email": "emilio.marti@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Pacheco Soto",
+        "email": "maria.pacheco@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Lucia",
+        "lastName": "Santiago Gallego",
+        "email": "lucia.santiago@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Jose",
+        "lastName": "Aguilar Gallego",
+        "email": "jose.aguilar@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Raquel",
+        "lastName": "Miguel Rueda",
+        "email": "raquel.miguel@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Victor",
+        "lastName": "Gomez Carrasco",
+        "email": "victor.gomez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Jose",
+        "lastName": "Tomas Gimenez",
+        "email": "jose.tomas@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Javier",
+        "lastName": "Castillo Roldan",
+        "email": "javier.castillo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Angel",
+        "lastName": "Hidalgo Soler",
+        "email": "angel.hidalgo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Rosa",
+        "lastName": "Guerrero Hidalgo",
+        "email": "rosa.guerrero@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Oscar",
+        "lastName": "Navarro Martinez",
+        "email": "oscar.navarro@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Claudia",
+        "lastName": "Gonzalez Arias",
+        "email": "claudia.gonzalez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Ines",
+        "lastName": "Bernal Campos",
+        "email": "ines.bernal@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Martina",
+        "lastName": "Reyes Bernal",
+        "email": "martina.reyes@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Mateo",
+        "lastName": "Roman Blanco",
+        "email": "mateo.roman@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Mercedes",
+        "lastName": "Pascual Gallardo",
+        "email": "mercedes.pascual@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Vicente",
+        "lastName": "Santiago Carrillo",
+        "email": "vicente.santiago@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Nicolas",
+        "lastName": "Rivera Carrasco",
+        "email": "nicolas.rivera@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Victor",
+        "lastName": "Perez Roldan",
+        "email": "victor.perez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Pablo",
+        "lastName": "Guerrero Salazar",
+        "email": "pablo.guerrero@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Mario",
+        "lastName": "Moreno Acosta",
+        "email": "mario.moreno@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Ruben",
+        "lastName": "Cortes Cuesta",
+        "email": "ruben.cortes@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Jaime",
+        "lastName": "Jimenez Fuentes",
+        "email": "jaime.jimenez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Noelia",
+        "lastName": "Cano Cuesta",
+        "email": "noelia.cano@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Jose",
+        "lastName": "Redondo Pacheco",
+        "email": "jose.redondo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Manuel",
+        "lastName": "Rubio Martinez",
+        "email": "manuel.rubio@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Alba",
+        "lastName": "Otero Alonso",
+        "email": "alba.otero@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Rosa",
+        "lastName": "Mesa Franco",
+        "email": "rosa.mesa@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Fatima",
+        "lastName": "Salazar Gallego",
+        "email": "fatima.salazar@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Francisco",
+        "lastName": "Villar Molina",
+        "email": "francisco.villar@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Juan",
+        "lastName": "Gallardo Sanz",
+        "email": "juan.gallardo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Fatima",
+        "lastName": "Redondo Santiago",
+        "email": "fatima.redondo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Ruben",
+        "lastName": "Villar Rojas",
+        "email": "ruben.villar@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Luis",
+        "lastName": "Galan Palacios",
+        "email": "luis.galan@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Patricia",
+        "lastName": "Pereira Roman",
+        "email": "patricia.pereira@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Martin",
+        "lastName": "Serrano Villanueva",
+        "email": "martin.serrano@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-09-01"
+    },
+    {
+        "firstName": "Cesar",
+        "lastName": "Parra Millan",
+        "email": "cesar.parra@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Paula",
+        "lastName": "Carrillo Rojas",
+        "email": "paula.carrillo@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Emilio",
+        "lastName": "Hernandez Castillo",
+        "email": "emilio.hernandez@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Patricia",
+        "lastName": "Cabrera Cortes",
+        "email": "patricia.cabrera@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-02-01"
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Moya Flores",
+        "email": "maria.moya@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Jose",
+        "lastName": "Casado Montes",
+        "email": "jose.casado@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2021-09-01"
+    },
+    {
+        "firstName": "Mercedes",
+        "lastName": "Mendoza Montero",
+        "email": "mercedes.mendoza@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    },
+    {
+        "firstName": "Fernando",
+        "lastName": "Merino Santos",
+        "email": "fernando.merino@poppy-test.com",
+        "password": "",
+        "role": "USER",
+        "startDate": "2022-02-01"
+    }
+]

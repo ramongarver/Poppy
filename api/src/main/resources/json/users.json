@@ -1,0 +1,9 @@
+[
+  {
+    "firstName": "Admin",
+    "lastName": "Poppy Platform",
+    "email": "admin@poppy.com",
+    "password": "",
+    "role": "ADMIN"
+  }
+]
