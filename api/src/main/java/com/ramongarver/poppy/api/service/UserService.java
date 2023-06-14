@@ -18,4 +18,6 @@ public interface UserService {
 
     void deleteUser(Long userId);
 
+    boolean doesEmailExist(String email);
+
 }
