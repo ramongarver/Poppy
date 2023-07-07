@@ -1,4 +1,4 @@
-package com.ramongarver.poppy.api.dto;
+package com.ramongarver.poppy.api.dto.workgroup;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

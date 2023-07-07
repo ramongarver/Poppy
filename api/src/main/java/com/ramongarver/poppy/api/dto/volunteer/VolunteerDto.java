@@ -1,5 +1,6 @@
-package com.ramongarver.poppy.api.dto;
+package com.ramongarver.poppy.api.dto.volunteer;
 
+import com.ramongarver.poppy.api.dto.user.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
