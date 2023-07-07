@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class VolunteerServiceImpl implements VolunteerService {
+
     private final VolunteerRepository volunteerRepository;
 
     @Override

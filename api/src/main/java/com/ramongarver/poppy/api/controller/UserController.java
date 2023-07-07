@@ -1,6 +1,6 @@
 package com.ramongarver.poppy.api.controller;
 
-import com.ramongarver.poppy.api.dto.UserDto;
+import com.ramongarver.poppy.api.dto.user.UserDto;
 import com.ramongarver.poppy.api.entity.User;
 import com.ramongarver.poppy.api.mapper.UserMapper;
 import com.ramongarver.poppy.api.service.UserService;

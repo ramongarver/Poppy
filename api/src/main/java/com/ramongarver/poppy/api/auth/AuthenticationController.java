@@ -1,7 +1,7 @@
 package com.ramongarver.poppy.api.auth;
 
 import com.ramongarver.poppy.api.controller.ControllerConstants;
-import com.ramongarver.poppy.api.dto.UserDto;
+import com.ramongarver.poppy.api.dto.user.UserDto;
 import com.ramongarver.poppy.api.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

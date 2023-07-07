@@ -1,4 +1,4 @@
-package com.ramongarver.poppy.api.dto;
+package com.ramongarver.poppy.api.dto.user;
 
 
 import com.ramongarver.poppy.api.enums.Role;

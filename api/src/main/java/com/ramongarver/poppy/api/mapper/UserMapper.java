@@ -1,6 +1,6 @@
 package com.ramongarver.poppy.api.mapper;
 
-import com.ramongarver.poppy.api.dto.UserDto;
+import com.ramongarver.poppy.api.dto.user.UserDto;
 import com.ramongarver.poppy.api.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

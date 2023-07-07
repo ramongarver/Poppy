@@ -1,6 +1,6 @@
 package com.ramongarver.poppy.api.mapper;
 
-import com.ramongarver.poppy.api.dto.VolunteerDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.entity.WorkGroup;
