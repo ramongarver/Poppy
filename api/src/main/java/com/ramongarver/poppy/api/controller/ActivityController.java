@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,12 +43,14 @@ public class ActivityController {
         return new ResponseEntity<>(activityMapper.toListReadDto(activities), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ActivityReadDto> createActivity(@Valid @RequestBody ActivityCreateDto activityCreateDto) {
         final Activity savedActivity = activityService.createActivity(activityCreateDto);
         return new ResponseEntity<>(activityMapper.toReadDto(savedActivity), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
     public ResponseEntity<ActivityReadDto> updateActivity(@PathVariable("id") Long activityId,
                                                           @RequestBody ActivityUpdateDto activityUpdateDto) {
@@ -55,6 +58,7 @@ public class ActivityController {
         return new ResponseEntity<>(activityMapper.toReadDto(updatedActivity), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteActivity(@PathVariable("id") Long activityId) {
         activityService.deleteActivity(activityId);

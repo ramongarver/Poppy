@@ -62,7 +62,7 @@ public class DatabaseSeeder implements CommandLineRunner {
 
             entities.forEach(entity -> {
                 if (entity instanceof User user) {
-                    user.setPassword(passwordEncoder.encode(commonPassword));
+                    user.setPassword(commonPassword);
                 }
             });
 
