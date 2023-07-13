@@ -1,0 +1,42 @@
+services:
+  poppy-api:
+    build: ..
+    container_name: ${API_CONTAINER_NAME}
+    ports:
+      - "${API_LOCAL_PORT}:${API_DOCKER_PORT}"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:mysql://${DB_CONTAINER_NAME}:3306/${MYSQL_DATABASE}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+    depends_on:
+      poppy-db:
+        condition: service_healthy
+
+  poppy-db:
+    image: ${DB_IMAGE}
+    container_name: ${DB_CONTAINER_NAME}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "${DB_LOCAL_PORT}:${DB_DOCKER_PORT}"
+
+  poppy-api-sonarqube:
+    image: ${SONARQUBE_IMAGE}
+    container_name: ${SONARQUBE_CONTAINER_NAME}
+    ports:
+      - "${SONARQUBE_LOCAL_PORT}:${SONARQUBE_DOCKER_PORT}"
+
+volumes:
+  db_data:

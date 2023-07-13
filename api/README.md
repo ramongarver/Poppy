@@ -1,3 +1,3 @@
 # Poppy - API
 
-TODO
+## How to deploy the API locally? (MySQL Database + Spring Boot API)
