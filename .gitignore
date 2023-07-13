@@ -167,7 +167,9 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+!api/dev-setup/.env
 .env*.local
+
 
 # vercel
 .vercel
