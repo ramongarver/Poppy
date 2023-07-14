@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class WorkGroupDto {
+public class WorkGroupReadDto {
 
     private Long id;
 
@@ -24,5 +24,6 @@ public class WorkGroupDto {
     private String description;
 
     private List<Long> volunteersId;
+
 
 }

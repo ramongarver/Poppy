@@ -90,7 +90,7 @@ class ActivityControllerTest {
         when(activityService.getActivityById(anyLong())).thenReturn(mockActivity);
 
         mockMvc.perform(
-                        get(ControllerConstants.ACTIVITY_ROUTE + "/{id}", 1).accept(MediaType.APPLICATION_JSON))
+                        get(ControllerConstants.ACTIVITIES_ROUTE + "/{id}", 1).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.name", is(mockActivity.getName())))
@@ -101,7 +101,7 @@ class ActivityControllerTest {
 
     @Test
     void testGetActivityById_unauthenticated() throws Exception {
-        mockMvc.perform(get(ControllerConstants.ACTIVITY_ROUTE + "/{id}", 1))
+        mockMvc.perform(get(ControllerConstants.ACTIVITIES_ROUTE + "/{id}", 1))
                 .andExpect(status().isUnauthorized());
     }
 
@@ -115,7 +115,7 @@ class ActivityControllerTest {
         when(activityMapper.toListReadDto(activities)).thenReturn(activitiesDto);
 
         mockMvc.perform(
-                        get(ControllerConstants.ACTIVITY_ROUTE)
+                        get(ControllerConstants.ACTIVITIES_ROUTE)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -128,7 +128,7 @@ class ActivityControllerTest {
 
     @Test
     void testGetAllActivities_unauthenticated() throws Exception {
-        mockMvc.perform(get(ControllerConstants.ACTIVITY_ROUTE))
+        mockMvc.perform(get(ControllerConstants.ACTIVITIES_ROUTE))
                 .andExpect(status().isUnauthorized());
     }
 
@@ -138,7 +138,7 @@ class ActivityControllerTest {
         when(activityService.createActivity(any(ActivityCreateDto.class))).thenReturn(mockActivity);
 
         mockMvc.perform(
-                        post(ControllerConstants.ACTIVITY_ROUTE)
+                        post(ControllerConstants.ACTIVITIES_ROUTE)
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(mockActivity)))
@@ -152,7 +152,7 @@ class ActivityControllerTest {
 
     @Test
     void testCreateActivity_unauthenticated() throws Exception {
-        mockMvc.perform(post(ControllerConstants.ACTIVITY_ROUTE)
+        mockMvc.perform(post(ControllerConstants.ACTIVITIES_ROUTE)
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(mockActivity)))
@@ -165,7 +165,7 @@ class ActivityControllerTest {
         when(activityService.updateActivity(any(Long.class), any(ActivityUpdateDto.class))).thenReturn(mockActivity);
 
         mockMvc.perform(
-                        put(ControllerConstants.ACTIVITY_ROUTE + "/{id}", 1)
+                        put(ControllerConstants.ACTIVITIES_ROUTE + "/{id}", 1)
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(mockActivity)))
@@ -179,7 +179,7 @@ class ActivityControllerTest {
 
     @Test
     void testUpdateActivity_unauthenticated() throws Exception {
-        mockMvc.perform(put(ControllerConstants.ACTIVITY_ROUTE + "/{id}", 1)
+        mockMvc.perform(put(ControllerConstants.ACTIVITIES_ROUTE + "/{id}", 1)
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(mockActivity)))
@@ -192,7 +192,7 @@ class ActivityControllerTest {
         doNothing().when(activityService).deleteActivity(anyLong());
 
         mockMvc.perform(
-                        delete(ControllerConstants.ACTIVITY_ROUTE + "/{id}", 1)
+                        delete(ControllerConstants.ACTIVITIES_ROUTE + "/{id}", 1)
                                 .with(csrf()))
                 .andExpect(status().isNoContent())
                 .andExpect(content().string("Activity successfully deleted!"));
@@ -200,7 +200,7 @@ class ActivityControllerTest {
 
     @Test
     void testDeleteActivity_unauthenticated() throws Exception {
-        mockMvc.perform(delete(ControllerConstants.ACTIVITY_ROUTE + "/{id}", 1)
+        mockMvc.perform(delete(ControllerConstants.ACTIVITIES_ROUTE + "/{id}", 1)
                         .with(csrf()))
                 .andExpect(status().isUnauthorized());
     }
