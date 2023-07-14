@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(ControllerConstants.ACTIVITY_ROUTE)
+@RequestMapping(ControllerConstants.ACTIVITIES_ROUTE)
 public class ActivityController {
 
     private final ActivityMapper activityMapper;
