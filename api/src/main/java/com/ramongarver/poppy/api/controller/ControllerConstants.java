@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ControllerConstants {
 
+    // RESOURCES
+    public static final String VOLUNTEERS_RESOURCE = "/volunteers";
+
     public static final String API_ROUTE = "/api";
 
     public static final String ROOT_ROUTE = API_ROUTE + "/";
@@ -20,6 +23,8 @@ public class ControllerConstants {
     public static final String ACTIVITY_PACKAGES_ROUTE = API_ROUTE + "/activity-packages";
 
     public static final String USERS_ROUTE = API_ROUTE + "/users";
+
+    public static final String VOLUNTEERS_ROUTE = API_ROUTE + VOLUNTEERS_RESOURCE;
 
     public static final String WORKGROUPS_ROUTE = API_ROUTE + "/workgroups";
 

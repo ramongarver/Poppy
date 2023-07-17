@@ -20,4 +20,11 @@ public interface ActivityService {
 
     void deleteActivity(Long activityId);
 
+    void assignVolunteerToActivity(Long activityId, Long volunteerId);
+
+    void removeVolunteerFromActivity(Long activityId, Long volunteerId);
+
+    void assignVolunteersToActivity(Long activityId, List<Long> volunteerIds);
+
+    void removeVolunteersFromActivity(Long activityId, List<Long> volunteerIds);
 }

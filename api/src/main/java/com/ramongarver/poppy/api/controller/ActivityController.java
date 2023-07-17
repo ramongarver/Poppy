@@ -3,6 +3,7 @@ package com.ramongarver.poppy.api.controller;
 import com.ramongarver.poppy.api.dto.activity.ActivityCreateDto;
 import com.ramongarver.poppy.api.dto.activity.ActivityReadDto;
 import com.ramongarver.poppy.api.dto.activity.ActivityUpdateDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerIdsDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.mapper.ActivityMapper;
 import com.ramongarver.poppy.api.service.ActivityService;
@@ -63,6 +64,38 @@ public class ActivityController {
     public ResponseEntity<String> deleteActivity(@PathVariable("id") Long activityId) {
         activityService.deleteActivity(activityId);
         return new ResponseEntity<>("Activity successfully deleted!", HttpStatus.NO_CONTENT);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<Void> assignVolunteerToActivity(@PathVariable("activityId") Long activityId,
+                                                          @PathVariable("volunteerId") Long volunteerId) {
+        activityService.assignVolunteerToActivity(activityId, volunteerId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<Void> removeVolunteerFromActivity(@PathVariable("activityId") Long activityId,
+                                                            @PathVariable("volunteerId") Long volunteerId) {
+        activityService.removeVolunteerFromActivity(activityId, volunteerId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
+    public ResponseEntity<Void> assignVolunteersToActivity(@PathVariable("activityId") Long activityId,
+                                                           @RequestBody VolunteerIdsDto volunteerIdsDto) {
+        activityService.assignVolunteersToActivity(activityId, volunteerIdsDto.getVolunteerIds());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
+    public ResponseEntity<Void> removeVolunteersFromActivity(@PathVariable("activityId") Long activityId,
+                                                             @RequestBody VolunteerIdsDto volunteerIdsDto) {
+        activityService.removeVolunteersFromActivity(activityId, volunteerIdsDto.getVolunteerIds());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
