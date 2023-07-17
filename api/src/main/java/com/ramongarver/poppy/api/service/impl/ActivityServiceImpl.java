@@ -3,10 +3,14 @@ package com.ramongarver.poppy.api.service.impl;
 import com.ramongarver.poppy.api.dto.activity.ActivityCreateDto;
 import com.ramongarver.poppy.api.dto.activity.ActivityUpdateDto;
 import com.ramongarver.poppy.api.entity.Activity;
+import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.exception.ResourceNotFoundException;
+import com.ramongarver.poppy.api.exception.VolunteerAlreadyAssignedException;
+import com.ramongarver.poppy.api.exception.VolunteerNotAssignedException;
 import com.ramongarver.poppy.api.mapper.ActivityMapper;
 import com.ramongarver.poppy.api.repository.ActivityRepository;
 import com.ramongarver.poppy.api.service.ActivityService;
+import com.ramongarver.poppy.api.service.VolunteerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,8 @@ public class ActivityServiceImpl implements ActivityService {
     private final ActivityMapper activityMapper;
 
     private final ActivityRepository activityRepository;
+
+    private final VolunteerService volunteerService;
 
     @Override
     public Activity createActivity(ActivityCreateDto activityCreateDto) {
@@ -59,6 +65,48 @@ public class ActivityServiceImpl implements ActivityService {
         if (!activityRepository.existsById(activityId)) {
             throw new ResourceNotFoundException(Activity.class.getSimpleName(), "id", activityId);
         }
+    }
+
+    public void assignVolunteerToActivity(Long activityId, Long volunteerId) {
+        assignVolunteersToActivity(activityId, List.of(volunteerId));
+    }
+
+    public void removeVolunteerFromActivity(Long activityId, Long volunteerId) {
+        removeVolunteersFromActivity(activityId, List.of(volunteerId));
+    }
+
+    public void assignVolunteersToActivity(Long activityId, List<Long> volunteerIds) {
+        final Activity activity = getActivityById(activityId);
+        final List<Volunteer> volunteers = volunteerService.getVolunteersByIds(volunteerIds);
+
+        final List<Volunteer> activityVolunteers = activity.getVolunteers();
+
+        for (final Volunteer volunteer : volunteers) {
+            if (activityVolunteers.contains(volunteer)) {
+                throw new VolunteerAlreadyAssignedException(volunteer, activity);
+            }
+        }
+
+        activityVolunteers.addAll(volunteers);
+        activity.setVolunteers(activityVolunteers);
+        activityRepository.save(activity);
+    }
+
+    public void removeVolunteersFromActivity(Long activityId, List<Long> volunteerIds) {
+        final Activity activity = getActivityById(activityId);
+        final List<Volunteer> volunteers = volunteerService.getVolunteersByIds(volunteerIds);
+
+        final List<Volunteer> activityVolunteers = activity.getVolunteers();
+
+        for (final Volunteer volunteer : volunteers) {
+            if (!activityVolunteers.contains(volunteer)) {
+                throw new VolunteerNotAssignedException(volunteer, activity);
+            }
+        }
+
+        activityVolunteers.removeAll(volunteers);
+        activity.setVolunteers(activityVolunteers);
+        activityRepository.save(activity);
     }
 
 }
