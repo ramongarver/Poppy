@@ -61,20 +61,23 @@ public class ActivityServiceImpl implements ActivityService {
         activityRepository.deleteById(activityId);
     }
 
-    public void doesActivityExist(Long activityId) {
+    private void doesActivityExist(Long activityId) {
         if (!activityRepository.existsById(activityId)) {
             throw new ResourceNotFoundException(Activity.class.getSimpleName(), "id", activityId);
         }
     }
 
+    @Override
     public void assignVolunteerToActivity(Long activityId, Long volunteerId) {
         assignVolunteersToActivity(activityId, List.of(volunteerId));
     }
 
+    @Override
     public void removeVolunteerFromActivity(Long activityId, Long volunteerId) {
         removeVolunteersFromActivity(activityId, List.of(volunteerId));
     }
 
+    @Override
     public void assignVolunteersToActivity(Long activityId, List<Long> volunteerIds) {
         final Activity activity = getActivityById(activityId);
         final List<Volunteer> volunteers = volunteerService.getVolunteersByIds(volunteerIds);
@@ -83,7 +86,8 @@ public class ActivityServiceImpl implements ActivityService {
 
         for (final Volunteer volunteer : volunteers) {
             if (activityVolunteers.contains(volunteer)) {
-                throw new VolunteerAlreadyAssignedException(volunteer, activity);
+                throw new VolunteerAlreadyAssignedException(volunteer,
+                        Activity.class.getSimpleName(), activity.getId(), activity.getName());
             }
         }
 
@@ -92,6 +96,7 @@ public class ActivityServiceImpl implements ActivityService {
         activityRepository.save(activity);
     }
 
+    @Override
     public void removeVolunteersFromActivity(Long activityId, List<Long> volunteerIds) {
         final Activity activity = getActivityById(activityId);
         final List<Volunteer> volunteers = volunteerService.getVolunteersByIds(volunteerIds);
@@ -100,7 +105,8 @@ public class ActivityServiceImpl implements ActivityService {
 
         for (final Volunteer volunteer : volunteers) {
             if (!activityVolunteers.contains(volunteer)) {
-                throw new VolunteerNotAssignedException(volunteer, activity);
+                throw new VolunteerNotAssignedException(volunteer,
+                        Activity.class.getSimpleName(), activity.getId(), activity.getName());
             }
         }
 

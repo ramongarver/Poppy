@@ -1,5 +1,6 @@
 package com.ramongarver.poppy.api.controller;
 
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerIdsDto;
 import com.ramongarver.poppy.api.dto.workgroup.WorkGroupCreateDto;
 import com.ramongarver.poppy.api.dto.workgroup.WorkGroupReadDto;
 import com.ramongarver.poppy.api.dto.workgroup.WorkGroupUpdateDto;
@@ -64,5 +65,38 @@ public class WorkGroupController {
         workGroupService.deleteWorkGroup(workGroupId);
         return new ResponseEntity<>("Work group successfully deleted!", HttpStatus.NO_CONTENT);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<Void> assignVolunteerToWorkGroup(@PathVariable("workGroupId") Long workGroupId,
+                                                           @PathVariable("volunteerId") Long volunteerId) {
+        workGroupService.assignVolunteerToWorkGroup(workGroupId, volunteerId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<Void> removeVolunteerFromWorkGroup(@PathVariable("workGroupId") Long workGroupId,
+                                                             @PathVariable("volunteerId") Long volunteerId) {
+        workGroupService.removeVolunteerFromWorkGroup(workGroupId, volunteerId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
+    public ResponseEntity<Void> assignVolunteersToWorkGroup(@PathVariable("workGroupId") Long workGroupId,
+                                                            @RequestBody VolunteerIdsDto volunteerIdsDto) {
+        workGroupService.assignVolunteersToWorkGroup(workGroupId, volunteerIdsDto.getVolunteerIds());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
+    public ResponseEntity<Void> removeVolunteersFromWorkGroup(@PathVariable("workGroupId") Long workGroupId,
+                                                              @RequestBody VolunteerIdsDto volunteerIdsDto) {
+        workGroupService.removeVolunteersFromWorkGroup(workGroupId, volunteerIdsDto.getVolunteerIds());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }
