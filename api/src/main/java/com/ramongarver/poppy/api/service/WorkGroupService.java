@@ -20,4 +20,12 @@ public interface WorkGroupService {
 
     void deleteWorkGroup(Long workGroupId);
 
+    void assignVolunteerToWorkGroup(Long workGroupId, Long volunteerId);
+
+    void removeVolunteerFromWorkGroup(Long workGroupId, Long volunteerId);
+
+    void assignVolunteersToWorkGroup(Long workGroupId, List<Long> volunteerIds);
+
+    void removeVolunteersFromWorkGroup(Long workGroupId, List<Long> volunteerIds);
+
 }
