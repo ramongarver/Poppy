@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 public class ControllerConstants {
 
     // RESOURCES
+    public static final String ACTIVITIES_RESOURCE = "/activities";
     public static final String VOLUNTEERS_RESOURCE = "/volunteers";
 
     public static final String API_ROUTE = "/api";
@@ -18,7 +19,7 @@ public class ControllerConstants {
     public static final String AUTH_AUTHENTICATE_ROUTE = "/login";
     public static final String AUTH_MY_ACCOUNT_ROUTE = "/my-account";
 
-    public static final String ACTIVITIES_ROUTE = API_ROUTE + "/activities";
+    public static final String ACTIVITIES_ROUTE = API_ROUTE + ACTIVITIES_RESOURCE;
 
     public static final String ACTIVITY_PACKAGES_ROUTE = API_ROUTE + "/activity-packages";
 
