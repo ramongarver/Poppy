@@ -1,17 +1,17 @@
 package com.ramongarver.poppy.api.exception;
 
-import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.Volunteer;
 
 public class VolunteerNotAssignedException extends RuntimeException {
-    public VolunteerNotAssignedException(Volunteer volunteer, Activity activity) {
+    public VolunteerNotAssignedException(Volunteer volunteer, String entityName, Long entityId, String entityDisplayName) {
         super(
                 String.format(
-                        "Volunteer %d (%s) is not assigned to Activity %d (%s)",
+                        "Volunteer %d (%s) is not assigned to %s %d (%s)",
                         volunteer.getId(),
                         volunteer.getFirstName() + " " + volunteer.getLastName(),
-                        activity.getId(),
-                        activity.getName()
+                        entityName,
+                        entityId,
+                        entityDisplayName
                 )
         );
     }

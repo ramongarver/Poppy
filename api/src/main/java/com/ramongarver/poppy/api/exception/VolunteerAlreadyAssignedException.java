@@ -1,17 +1,17 @@
 package com.ramongarver.poppy.api.exception;
 
-import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.Volunteer;
 
 public class VolunteerAlreadyAssignedException extends RuntimeException {
-    public VolunteerAlreadyAssignedException(Volunteer volunteer, Activity activity) {
+    public VolunteerAlreadyAssignedException(Volunteer volunteer, String entityName, Long entityId, String entityDisplayName) {
         super(
                 String.format(
-                        "Volunteer %d (%s) already assigned to Activity %d (%s)",
+                        "Volunteer %d (%s) already assigned to %s %d (%s)",
                         volunteer.getId(),
                         volunteer.getFirstName() + " " + volunteer.getLastName(),
-                        activity.getId(),
-                        activity.getName()
+                        entityName,
+                        entityId,
+                        entityDisplayName
                 )
         );
     }
