@@ -23,7 +23,7 @@ public class ActivityMapper {
                 .name(activity.getName())
                 .description(activity.getDescription())
                 .localDateTime(activity.getLocalDateTime())
-                .volunteersIds(activity.getVolunteers() != null ? activity.getVolunteers().stream().map(Volunteer::getId).toList() : List.of())
+                .volunteerIds(activity.getVolunteers() != null ? activity.getVolunteers().stream().map(Volunteer::getId).toList() : List.of())
                 .build();
     }
 
@@ -34,7 +34,7 @@ public class ActivityMapper {
     }
 
     public Activity fromReadDto(ActivityReadDto activityReadDto) {
-        List<Volunteer> volunteers = volunteerService.getVolunteersByIds(activityReadDto.getVolunteersIds());
+        final List<Volunteer> volunteers = volunteerService.getVolunteersByIds(activityReadDto.getVolunteerIds());
 
         return Activity.builder()
                 .id(activityReadDto.getId())

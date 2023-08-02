@@ -1,20 +1,22 @@
 package com.ramongarver.poppy.api.entity;
 
+import com.ramongarver.poppy.api.enums.ActivityPackageType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Activity {
+public class ActivityPackage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,27 +35,25 @@ public class Activity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private LocalDateTime localDateTime;
+    @Enumerated(EnumType.STRING)
+    private ActivityPackageType type;
 
     @Column(nullable = false)
-    private String place;
+    private LocalDate availabilityStartDate;
 
-    @Column(nullable = false, columnDefinition = "int default 1")
-    private int numberOfCoordinators;
+    @Column(nullable = false)
+    private LocalDate availabilityEndDate;
 
-    @ManyToMany
-    @JoinTable(
-            name = "activity_volunteer",
-            joinColumns = @JoinColumn(name = "activity_id"),
-            inverseJoinColumns = @JoinColumn(name = "volunteer_id")
-    )
-    private List<Volunteer> volunteers = new ArrayList<>();
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean isVisible;
 
-    @Column(name = "activity_package_id")
-    private Long activityPackageId;
+    @OneToMany
+    @JoinColumn(name = "activity_package_id")
+    private List<Activity> activities = new ArrayList<>();
+
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean areVolunteersAssigned;
 
 }

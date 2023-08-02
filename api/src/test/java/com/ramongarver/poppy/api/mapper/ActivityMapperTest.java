@@ -42,7 +42,7 @@ class ActivityMapperTest {
             .name("Test Activity")
             .description("Test Description")
             .localDateTime(LocalDateTime.now())
-            .volunteersIds(List.of(1L))
+            .volunteerIds(List.of(1L))
             .build();
     ;
 
@@ -59,7 +59,7 @@ class ActivityMapperTest {
         assertEquals(activity.getName(), result.getName());
         assertEquals(activity.getDescription(), result.getDescription());
         assertEquals(activity.getLocalDateTime(), result.getLocalDateTime());
-        assertEquals(activity.getVolunteers().get(0).getId(), result.getVolunteersIds().get(0));
+        assertEquals(activity.getVolunteers().get(0).getId(), result.getVolunteerIds().get(0));
     }
 
     @Test
@@ -80,7 +80,7 @@ class ActivityMapperTest {
         assertEquals(activityDto.getName(), result.getName());
         assertEquals(activityDto.getDescription(), result.getDescription());
         assertEquals(activityDto.getLocalDateTime(), result.getLocalDateTime());
-        assertEquals(activityDto.getVolunteersIds().get(0), result.getVolunteers().get(0).getId());
+        assertEquals(activityDto.getVolunteerIds().get(0), result.getVolunteers().get(0).getId());
     }
 
 }

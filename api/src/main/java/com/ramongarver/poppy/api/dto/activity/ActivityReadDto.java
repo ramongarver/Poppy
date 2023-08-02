@@ -24,6 +24,6 @@ public class ActivityReadDto {
 
     private LocalDateTime localDateTime;
 
-    private List<Long> volunteersIds;
+    private List<Long> volunteerIds;
 
 }

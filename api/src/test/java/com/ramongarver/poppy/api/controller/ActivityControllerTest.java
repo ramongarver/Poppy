@@ -69,7 +69,7 @@ class ActivityControllerTest {
             .name("ActivityName")
             .description("ActivityDescription")
             .localDateTime(LocalDateTime.of(2023, 2, 10, 19, 30, 0))
-            .volunteersIds(List.of())
+            .volunteerIds(List.of())
             .build();
 
 
@@ -96,7 +96,7 @@ class ActivityControllerTest {
                 .andExpect(jsonPath("$.name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$.description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$.localDateTime", is("2023-02-10T19:30:00")))
-                .andExpect(jsonPath("$.volunteersIds", is(mockActivity.getVolunteers())));
+                .andExpect(jsonPath("$.volunteerIds", is(mockActivity.getVolunteers())));
     }
 
     @Test
@@ -123,7 +123,7 @@ class ActivityControllerTest {
                 .andExpect(jsonPath("$[0].name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$[0].description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$[0].localDateTime", is("2023-02-10T19:30:00")))
-                .andExpect(jsonPath("$[0].volunteersIds", is(mockActivity.getVolunteers())));
+                .andExpect(jsonPath("$[0].volunteerIds", is(mockActivity.getVolunteers())));
     }
 
     @Test
@@ -147,7 +147,7 @@ class ActivityControllerTest {
                 .andExpect(jsonPath("$.name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$.description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$.localDateTime", is("2023-02-10T19:30:00")))
-                .andExpect(jsonPath("$.volunteersIds", is(mockActivity.getVolunteers())));
+                .andExpect(jsonPath("$.volunteerIds", is(mockActivity.getVolunteers())));
     }
 
     @Test
@@ -174,7 +174,7 @@ class ActivityControllerTest {
                 .andExpect(jsonPath("$.name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$.description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$.localDateTime", is("2023-02-10T19:30:00")))
-                .andExpect(jsonPath("$.volunteersIds", is(mockActivity.getVolunteers())));
+                .andExpect(jsonPath("$.volunteerIds", is(mockActivity.getVolunteers())));
     }
 
     @Test

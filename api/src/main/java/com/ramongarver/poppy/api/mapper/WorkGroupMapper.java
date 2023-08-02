@@ -24,7 +24,7 @@ public class WorkGroupMapper {
                 .name(workGroup.getName())
                 .shortName(workGroup.getShortName())
                 .description(workGroup.getDescription())
-                .volunteersId(workGroup.getVolunteers().stream().map(Volunteer::getId).toList())
+                .volunteerIds(workGroup.getVolunteers().stream().map(Volunteer::getId).toList())
                 .build();
     }
 
@@ -35,7 +35,7 @@ public class WorkGroupMapper {
     }
 
     public WorkGroup fromReadDto(WorkGroupReadDto workGroupReadDto) {
-        List<Volunteer> volunteers = volunteerService.getVolunteersByIds(workGroupReadDto.getVolunteersId());
+        List<Volunteer> volunteers = volunteerService.getVolunteersByIds(workGroupReadDto.getVolunteerIds());
 
         return WorkGroup.builder()
                 .id(workGroupReadDto.getId())

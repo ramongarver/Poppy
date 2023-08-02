@@ -23,7 +23,7 @@ public class WorkGroupReadDto {
 
     private String description;
 
-    private List<Long> volunteersId;
+    private List<Long> volunteerIds;
 
 
 }
