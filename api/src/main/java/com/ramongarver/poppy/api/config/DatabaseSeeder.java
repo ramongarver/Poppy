@@ -2,9 +2,11 @@ package com.ramongarver.poppy.api.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ramongarver.poppy.api.entity.Activity;
+import com.ramongarver.poppy.api.entity.ActivityPackage;
 import com.ramongarver.poppy.api.entity.User;
 import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.entity.WorkGroup;
+import com.ramongarver.poppy.api.repository.ActivityPackageRepository;
 import com.ramongarver.poppy.api.repository.ActivityRepository;
 import com.ramongarver.poppy.api.repository.UserRepository;
 import com.ramongarver.poppy.api.repository.VolunteerRepository;
@@ -27,10 +29,11 @@ import java.util.List;
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
 
+    private final UserRepository userRepository;
     private final VolunteerRepository volunteerRepository;
     private final ActivityRepository activityRepository;
     private final WorkGroupRepository workGroupRepository;
-    private final UserRepository userRepository;
+    private final ActivityPackageRepository activityPackageRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -44,6 +47,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         loadFromJsonAndSave("volunteers.json", volunteerRepository, Volunteer.class);
         loadFromJsonAndSave("activities.json", activityRepository, Activity.class);
         loadFromJsonAndSave("workGroups.json", workGroupRepository, WorkGroup.class);
+        loadFromJsonAndSave("activityPackages.json", activityPackageRepository, ActivityPackage.class);
     }
 
     private <T> void loadFromJsonAndSave(String filename, JpaRepository<T, Long> repository, Class<T> type) {

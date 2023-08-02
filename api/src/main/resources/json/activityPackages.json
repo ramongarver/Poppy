@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Actividades  | Mayo 2023",
+    "description": "Paquete de actividades para mayo de 2023",
+    "type": "GENERAL",
+    "availabilityStartDate": "2023-04-25",
+    "availabilityEndDate": "2023-04-30"
+  },
+  {
+    "name": "National Erasmus Games",
+    "description": "Paquete de actividades para los National Erasmus Games",
+    "type": "EVENT",
+    "availabilityStartDate": "2023-04-01",
+    "availabilityEndDate": "2022-04-30"
+  },
+  {
+    "name": "Oficina | Enero 2023",
+    "description": "Paquete de oficina para enero de 2023",
+    "type": "OFFICE",
+    "availabilityStartDate": "2022-12-20",
+    "availabilityEndDate": "2022-12-29"
+  }
+]
