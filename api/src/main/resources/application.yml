@@ -1,4 +1,6 @@
 application:
+  title: Poppy API
+  formatted-version: v0.2.0
   description: API REST for the ESN management application Poppy
   developer: Ramón García Verjaga | ramongarver@git
 
