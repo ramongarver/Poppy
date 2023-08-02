@@ -62,6 +62,7 @@ class ActivityControllerTest {
             .name("ActivityName")
             .description("ActivityDescription")
             .localDateTime(LocalDateTime.of(2023, 2, 10, 19, 30, 0))
+            .place("ActivityPlace")
             .volunteers(List.of())
             .build();
     private final ActivityReadDto mockActivityReadDto = ActivityReadDto.builder()
@@ -69,6 +70,7 @@ class ActivityControllerTest {
             .name("ActivityName")
             .description("ActivityDescription")
             .localDateTime(LocalDateTime.of(2023, 2, 10, 19, 30, 0))
+            .place("ActivityPlace")
             .volunteerIds(List.of())
             .build();
 
