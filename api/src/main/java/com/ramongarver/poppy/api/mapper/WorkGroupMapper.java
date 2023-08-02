@@ -56,9 +56,12 @@ public class WorkGroupMapper {
     }
 
     public void fromUpdateDto(WorkGroup workGroup, WorkGroupUpdateDto workGroupUpdateDto) {
-        workGroup.setName(workGroupUpdateDto.getName());
-        workGroup.setShortName(workGroupUpdateDto.getShortName());
-        workGroup.setDescription(workGroupUpdateDto.getDescription());
+        workGroup.setName(workGroupUpdateDto.getName() != null
+                ? workGroupUpdateDto.getName() : workGroup.getName());
+        workGroup.setShortName(workGroupUpdateDto.getShortName() != null
+                ? workGroupUpdateDto.getShortName() : workGroup.getShortName());
+        workGroup.setDescription(workGroupUpdateDto.getDescription() != null
+                ? workGroupUpdateDto.getDescription() : workGroup.getDescription());
     }
 
 }

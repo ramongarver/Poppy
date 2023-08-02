@@ -48,11 +48,16 @@ public class ActivityPackageMapper {
     }
 
     public void fromUpdateDto(ActivityPackage activityPackage, ActivityPackageUpdateDto activityUpdateDto) {
-        activityPackage.setName(activityUpdateDto.getName());
-        activityPackage.setDescription(activityUpdateDto.getDescription());
-        activityPackage.setType(activityUpdateDto.getType());
-        activityPackage.setAvailabilityStartDate(activityUpdateDto.getAvailabilityStartDate());
-        activityPackage.setAvailabilityEndDate(activityUpdateDto.getAvailabilityEndDate());
+        activityPackage.setName(activityUpdateDto.getName() != null
+                ? activityUpdateDto.getName() : activityPackage.getName());
+        activityPackage.setDescription(activityUpdateDto.getDescription() != null
+                ? activityUpdateDto.getDescription() : activityPackage.getDescription());
+        activityPackage.setType(activityUpdateDto.getType() != null
+                ? activityUpdateDto.getType() : activityPackage.getType());
+        activityPackage.setAvailabilityStartDate(activityUpdateDto.getAvailabilityStartDate() != null
+                ? activityUpdateDto.getAvailabilityStartDate() : activityPackage.getAvailabilityStartDate());
+        activityPackage.setAvailabilityEndDate(activityUpdateDto.getAvailabilityEndDate() != null
+                ? activityUpdateDto.getAvailabilityEndDate() : activityPackage.getAvailabilityEndDate());
         activityPackage.setVisible(activityUpdateDto.isVisible());
     }
 

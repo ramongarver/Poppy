@@ -57,10 +57,14 @@ public class ActivityMapper {
     }
 
     public void fromUpdateDto(Activity activity, ActivityUpdateDto activityUpdateDto) {
-        activity.setName(activityUpdateDto.getName());
-        activity.setDescription(activityUpdateDto.getDescription());
-        activity.setLocalDateTime(activityUpdateDto.getLocalDateTime());
-        activity.setPlace(activityUpdateDto.getPlace());
+        activity.setName(activityUpdateDto.getName() != null
+                ? activityUpdateDto.getName() : activity.getName());
+        activity.setDescription(activityUpdateDto.getDescription() != null
+                ? activityUpdateDto.getDescription() : activity.getDescription());
+        activity.setLocalDateTime(activityUpdateDto.getLocalDateTime() != null
+                ? activityUpdateDto.getLocalDateTime() : activity.getLocalDateTime());
+        activity.setPlace(activityUpdateDto.getPlace() != null
+                ? activityUpdateDto.getPlace() : activity.getPlace());
     }
 
 }
