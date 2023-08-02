@@ -36,8 +36,8 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public List<Volunteer> getVolunteersByIds(List<Long> volunteersIds) {
-        return volunteerRepository.findByIdIn(volunteersIds != null ? volunteersIds : List.of());
+    public List<Volunteer> getVolunteersByIds(List<Long> volunteerIds) {
+        return volunteerRepository.findByIdIn(volunteerIds != null ? volunteerIds : List.of());
     }
 
     @Override
