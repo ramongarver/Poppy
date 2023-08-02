@@ -5,7 +5,6 @@ import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageReadDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageUpdateDto;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
 import com.ramongarver.poppy.api.mapper.ActivityPackageMapper;
-import com.ramongarver.poppy.api.service.ActivityAssignmentService;
 import com.ramongarver.poppy.api.service.ActivityPackageService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -31,7 +30,6 @@ public class ActivityPackageController {
     private final ActivityPackageMapper activityPackageMapper;
 
     private final ActivityPackageService activityPackageService;
-    private final ActivityAssignmentService activityAssignmentService;
 
     @GetMapping("{id}")
     public ResponseEntity<ActivityPackageReadDto> getActivityById(@PathVariable("id") Long activityPackageId) {
@@ -69,7 +67,7 @@ public class ActivityPackageController {
 
     @PostMapping("{id}/assign-volunteers")
     public ResponseEntity<Void> assignVolunteers(@PathVariable("id") Long activityPackageId) {
-        activityAssignmentService.assignVolunteersToActivities(activityPackageId);
+        // activityAssignmentService.assignVolunteersToActivities(activityPackageId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
