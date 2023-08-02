@@ -24,6 +24,8 @@ public class ActivityReadDto {
 
     private LocalDateTime localDateTime;
 
+    private String place;
+
     private List<Long> volunteerIds;
 
 }

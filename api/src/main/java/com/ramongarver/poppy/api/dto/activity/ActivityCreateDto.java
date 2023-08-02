@@ -26,4 +26,7 @@ public class ActivityCreateDto {
     @NotNull
     private LocalDateTime localDateTime;
 
+    @NotNull
+    private String place;
+
 }

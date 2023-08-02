@@ -21,4 +21,6 @@ public class ActivityUpdateDto {
 
     private LocalDateTime localDateTime;
 
+    private String place;
+
 }

@@ -23,6 +23,7 @@ public class ActivityMapper {
                 .name(activity.getName())
                 .description(activity.getDescription())
                 .localDateTime(activity.getLocalDateTime())
+                .place(activity.getPlace())
                 .volunteerIds(activity.getVolunteers() != null ? activity.getVolunteers().stream().map(Volunteer::getId).toList() : List.of())
                 .build();
     }
@@ -41,6 +42,7 @@ public class ActivityMapper {
                 .name(activityReadDto.getName())
                 .description(activityReadDto.getDescription())
                 .localDateTime(activityReadDto.getLocalDateTime())
+                .place(activityReadDto.getPlace())
                 .volunteers(volunteers)
                 .build();
     }
@@ -50,6 +52,7 @@ public class ActivityMapper {
                 .name(activityCreateDto.getName())
                 .description(activityCreateDto.getDescription())
                 .localDateTime(activityCreateDto.getLocalDateTime())
+                .place(activityCreateDto.getPlace())
                 .build();
     }
 
@@ -57,6 +60,7 @@ public class ActivityMapper {
         activity.setName(activityUpdateDto.getName());
         activity.setDescription(activityUpdateDto.getDescription());
         activity.setLocalDateTime(activityUpdateDto.getLocalDateTime());
+        activity.setPlace(activityUpdateDto.getPlace());
     }
 
 }

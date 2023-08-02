@@ -5,6 +5,6 @@
  |_|   \___/| .__/| .__/ \__, | /_/   \_\_|  |___|
             |_|   |_|    |___/
 
-${application.title}${application.formatted-version} on Spring Boot ${spring-boot.version}
+${application.title} ${application.formatted-version} on Spring Boot ${spring-boot.version}
 ${application.description}
 Developed by ${application.developer}
