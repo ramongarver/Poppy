@@ -1,12 +1,13 @@
 package com.ramongarver.poppy.api.mapper;
 
-import com.ramongarver.poppy.api.dto.volunteer.VolunteerDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerCreateDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerReadDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerUpdateDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.entity.WorkGroup;
-import com.ramongarver.poppy.api.service.ActivityService;
-import com.ramongarver.poppy.api.service.WorkGroupService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,37 +16,47 @@ import java.util.List;
 @Component
 public class VolunteerMapper {
 
-    private final ActivityService activityService;
-    private final WorkGroupService workGroupService;
+    private final PasswordEncoder passwordEncoder;
 
-    public VolunteerDto toDto(Volunteer volunteer) {
-        return VolunteerDto.builder()
+    private final UserMapper userMapper;
+
+    public VolunteerReadDto toReadDto(Volunteer volunteer) {
+        return VolunteerReadDto.builder()
                 .id(volunteer.getId())
                 .firstName(volunteer.getFirstName())
                 .lastName(volunteer.getLastName())
                 .email(volunteer.getEmail())
                 .startDate(volunteer.getStartDate())
                 .endDate(volunteer.getEndDate())
-                .workGroupsIds(volunteer.getWorkGroups().stream().map(WorkGroup::getId).toList())
-                .activitiesIds(volunteer.getActivities().stream().map(Activity::getId).toList())
+                .workGroupIds(volunteer.getWorkGroups().stream().map(WorkGroup::getId).toList())
+                .activityIds(volunteer.getActivities().stream().map(Activity::getId).toList())
                 .build();
     }
 
-    public Volunteer fromDto(VolunteerDto volunteerDto) {
-        final List<Activity> activities = activityService.getActivitiesByIds(volunteerDto.getActivitiesIds());
-        final List<WorkGroup> workGroups = workGroupService.getWorkGroupsByIds(volunteerDto.getWorkGroupsIds());
+    public List<VolunteerReadDto> toListReadDto(List<Volunteer> volunteers) {
+        return volunteers.stream()
+                .map(this::toReadDto)
+                .toList();
+    }
 
+    public Volunteer fromCreateDto(VolunteerCreateDto volunteerCreateDto) {
         return Volunteer.builder()
-                .id(volunteerDto.getId())
-                .firstName(volunteerDto.getFirstName())
-                .lastName(volunteerDto.getLastName())
-                .email(volunteerDto.getEmail())
-                .role(volunteerDto.getRole())
-                .startDate(volunteerDto.getStartDate())
-                .endDate(volunteerDto.getEndDate())
-                .activities(activities)
-                .workGroups(workGroups)
+                .firstName(volunteerCreateDto.getFirstName())
+                .lastName(volunteerCreateDto.getLastName())
+                .email(volunteerCreateDto.getEmail())
+                .password(passwordEncoder.encode(volunteerCreateDto.getPassword()))
+                .role(volunteerCreateDto.getRole())
+                .startDate(volunteerCreateDto.getStartDate())
+                .endDate(volunteerCreateDto.getEndDate())
                 .build();
+    }
+
+    public void fromUpdateDto(Volunteer existingVolunteer, VolunteerUpdateDto volunteerUpdateDto) {
+        userMapper.fromUpdateDto(existingVolunteer, volunteerUpdateDto);
+        existingVolunteer.setStartDate(volunteerUpdateDto.getStartDate() != null
+                ? volunteerUpdateDto.getStartDate() : existingVolunteer.getStartDate());
+        existingVolunteer.setEndDate(volunteerUpdateDto.getEndDate() != null
+                ? volunteerUpdateDto.getEndDate() : existingVolunteer.getEndDate());
     }
 
 }
