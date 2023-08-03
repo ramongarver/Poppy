@@ -5,7 +5,6 @@ import com.ramongarver.poppy.api.dto.activity.ActivityReadDto;
 import com.ramongarver.poppy.api.dto.activity.ActivityUpdateDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.Volunteer;
-import com.ramongarver.poppy.api.service.VolunteerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class ActivityMapper {
-
-    private final VolunteerService volunteerService;
 
     public ActivityReadDto toReadDto(Activity activity) {
         return ActivityReadDto.builder()
@@ -34,19 +31,6 @@ public class ActivityMapper {
                 .toList();
     }
 
-    public Activity fromReadDto(ActivityReadDto activityReadDto) {
-        final List<Volunteer> volunteers = volunteerService.getVolunteersByIds(activityReadDto.getVolunteerIds());
-
-        return Activity.builder()
-                .id(activityReadDto.getId())
-                .name(activityReadDto.getName())
-                .description(activityReadDto.getDescription())
-                .localDateTime(activityReadDto.getLocalDateTime())
-                .place(activityReadDto.getPlace())
-                .volunteers(volunteers)
-                .build();
-    }
-
     public Activity fromCreateDto(ActivityCreateDto activityCreateDto) {
         return Activity.builder()
                 .name(activityCreateDto.getName())
@@ -56,15 +40,15 @@ public class ActivityMapper {
                 .build();
     }
 
-    public void fromUpdateDto(Activity activity, ActivityUpdateDto activityUpdateDto) {
-        activity.setName(activityUpdateDto.getName() != null
-                ? activityUpdateDto.getName() : activity.getName());
-        activity.setDescription(activityUpdateDto.getDescription() != null
-                ? activityUpdateDto.getDescription() : activity.getDescription());
-        activity.setLocalDateTime(activityUpdateDto.getLocalDateTime() != null
-                ? activityUpdateDto.getLocalDateTime() : activity.getLocalDateTime());
-        activity.setPlace(activityUpdateDto.getPlace() != null
-                ? activityUpdateDto.getPlace() : activity.getPlace());
+    public void fromUpdateDto(Activity existingActivity, ActivityUpdateDto activityUpdateDto) {
+        existingActivity.setName(activityUpdateDto.getName() != null
+                ? activityUpdateDto.getName() : existingActivity.getName());
+        existingActivity.setDescription(activityUpdateDto.getDescription() != null
+                ? activityUpdateDto.getDescription() : existingActivity.getDescription());
+        existingActivity.setLocalDateTime(activityUpdateDto.getLocalDateTime() != null
+                ? activityUpdateDto.getLocalDateTime() : existingActivity.getLocalDateTime());
+        existingActivity.setPlace(activityUpdateDto.getPlace() != null
+                ? activityUpdateDto.getPlace() : existingActivity.getPlace());
     }
 
 }

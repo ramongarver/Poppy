@@ -5,12 +5,10 @@ import com.ramongarver.poppy.api.dto.activity.ActivityReadDto;
 import com.ramongarver.poppy.api.dto.activity.ActivityUpdateDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.Volunteer;
-import com.ramongarver.poppy.api.service.VolunteerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
@@ -19,13 +17,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ActivityMapperTest {
-
-    @Mock
-    private VolunteerService volunteerService;
 
     @InjectMocks
     private ActivityMapper activityMapper;
@@ -53,14 +47,6 @@ class ActivityMapperTest {
             .volunteers(Collections.singletonList(volunteer))
             .build();
 
-    private final ActivityReadDto activityReadDto = ActivityReadDto.builder()
-            .id(1L)
-            .name("Test Activity Name")
-            .description("Test Activity Description")
-            .localDateTime(FIXED_DATE_TIME)
-            .place("Test Activity Place")
-            .volunteerIds(List.of(1L))
-            .build();
     private final ActivityCreateDto activityCreateDto = ActivityCreateDto.builder()
             .name("Test Activity Name")
             .description("Test Activity Description")
@@ -106,22 +92,6 @@ class ActivityMapperTest {
         assertAll(
                 () -> assertEquals(1, results.size()),
                 () -> assertEquals(activity.getId(), results.get(0).getId())
-        );
-    }
-
-    @Test
-    void testFromReadDto() {
-        when(volunteerService.getVolunteersByIds(List.of(1L))).thenReturn(Collections.singletonList(volunteer));
-
-        final Activity result = activityMapper.fromReadDto(activityReadDto);
-
-        assertAll(
-                () -> assertEquals(activityReadDto.getId(), result.getId()),
-                () -> assertEquals(activityReadDto.getName(), result.getName()),
-                () -> assertEquals(activityReadDto.getDescription(), result.getDescription()),
-                () -> assertEquals(activityReadDto.getLocalDateTime(), result.getLocalDateTime()),
-                () -> assertEquals(activityReadDto.getPlace(), result.getPlace()),
-                () -> assertEquals(activityReadDto.getVolunteerIds().get(0), result.getVolunteers().get(0).getId())
         );
     }
 
