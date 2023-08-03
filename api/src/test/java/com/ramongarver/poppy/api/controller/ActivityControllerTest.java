@@ -79,7 +79,6 @@ class ActivityControllerTest {
     void setUp() {
         // Configuring the common mocks
         when(activityMapper.toReadDto(any(Activity.class))).thenReturn(mockActivityReadDto);
-        when(activityMapper.fromReadDto(any(ActivityReadDto.class))).thenReturn(mockActivity);
     }
 
     @AfterEach
