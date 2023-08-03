@@ -5,7 +5,6 @@ import com.ramongarver.poppy.api.dto.workgroup.WorkGroupReadDto;
 import com.ramongarver.poppy.api.dto.workgroup.WorkGroupUpdateDto;
 import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.entity.WorkGroup;
-import com.ramongarver.poppy.api.service.VolunteerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class WorkGroupMapper {
-
-    private final VolunteerService volunteerService;
 
     public WorkGroupReadDto toReadDto(WorkGroup workGroup) {
         return WorkGroupReadDto.builder()
@@ -34,18 +31,6 @@ public class WorkGroupMapper {
                 .toList();
     }
 
-    public WorkGroup fromReadDto(WorkGroupReadDto workGroupReadDto) {
-        List<Volunteer> volunteers = volunteerService.getVolunteersByIds(workGroupReadDto.getVolunteerIds());
-
-        return WorkGroup.builder()
-                .id(workGroupReadDto.getId())
-                .name(workGroupReadDto.getName())
-                .shortName(workGroupReadDto.getShortName())
-                .description(workGroupReadDto.getDescription())
-                .volunteers(volunteers)
-                .build();
-    }
-
     public WorkGroup fromCreateDto(WorkGroupCreateDto workGroupCreateDto) {
         return WorkGroup.builder()
                 .name(workGroupCreateDto.getName())
@@ -55,13 +40,13 @@ public class WorkGroupMapper {
                 .build();
     }
 
-    public void fromUpdateDto(WorkGroup workGroup, WorkGroupUpdateDto workGroupUpdateDto) {
-        workGroup.setName(workGroupUpdateDto.getName() != null
-                ? workGroupUpdateDto.getName() : workGroup.getName());
-        workGroup.setShortName(workGroupUpdateDto.getShortName() != null
-                ? workGroupUpdateDto.getShortName() : workGroup.getShortName());
-        workGroup.setDescription(workGroupUpdateDto.getDescription() != null
-                ? workGroupUpdateDto.getDescription() : workGroup.getDescription());
+    public void fromUpdateDto(WorkGroup existingWorkGroup, WorkGroupUpdateDto workGroupUpdateDto) {
+        existingWorkGroup.setName(workGroupUpdateDto.getName() != null
+                ? workGroupUpdateDto.getName() : existingWorkGroup.getName());
+        existingWorkGroup.setShortName(workGroupUpdateDto.getShortName() != null
+                ? workGroupUpdateDto.getShortName() : existingWorkGroup.getShortName());
+        existingWorkGroup.setDescription(workGroupUpdateDto.getDescription() != null
+                ? workGroupUpdateDto.getDescription() : existingWorkGroup.getDescription());
     }
 
 }

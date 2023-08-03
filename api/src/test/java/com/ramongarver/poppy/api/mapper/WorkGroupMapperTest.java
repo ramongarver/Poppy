@@ -5,12 +5,10 @@ import com.ramongarver.poppy.api.dto.workgroup.WorkGroupReadDto;
 import com.ramongarver.poppy.api.dto.workgroup.WorkGroupUpdateDto;
 import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.entity.WorkGroup;
-import com.ramongarver.poppy.api.service.VolunteerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
@@ -18,13 +16,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class WorkGroupMapperTest {
-
-    @Mock
-    private VolunteerService volunteerService;
 
     @InjectMocks
     private WorkGroupMapper workGroupMapper;
@@ -48,13 +42,6 @@ class WorkGroupMapperTest {
             .volunteers(Collections.singletonList(volunteer))
             .build();
 
-    private final WorkGroupReadDto workGroupReadDto = WorkGroupReadDto.builder()
-            .id(1L)
-            .name("Test WorkGroup Name")
-            .shortName("Test WorkGroup ShortName")
-            .description("Test WorkGroup Description")
-            .volunteerIds(List.of(1L))
-            .build();
     private final WorkGroupCreateDto workGroupCreateDto = WorkGroupCreateDto.builder()
             .name("Test WorkGroup Name")
             .shortName("Test WorkGroup ShortName")
@@ -96,22 +83,6 @@ class WorkGroupMapperTest {
         assertAll(
                 () -> assertEquals(1, results.size()),
                 () -> assertEquals(workGroup.getId(), results.get(0).getId())
-        );
-    }
-
-
-    @Test
-    void fromReadDto() {
-        when(volunteerService.getVolunteersByIds(List.of(1L))).thenReturn(Collections.singletonList(volunteer));
-
-        final WorkGroup result = workGroupMapper.fromReadDto(workGroupReadDto);
-
-        assertAll(
-                () -> assertEquals(workGroupReadDto.getId(), result.getId()),
-                () -> assertEquals(workGroupReadDto.getName(), result.getName()),
-                () -> assertEquals(workGroupReadDto.getShortName(), result.getShortName()),
-                () -> assertEquals(workGroupReadDto.getDescription(), result.getDescription()),
-                () -> assertEquals(workGroupReadDto.getVolunteerIds().get(0), result.getVolunteers().get(0).getId())
         );
     }
 
