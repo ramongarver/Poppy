@@ -9,7 +9,10 @@ public class ControllerConstants {
     // RESOURCES
     public static final String ACTIVITIES_RESOURCE = "/activities";
     public static final String ACTIVITY_PACKAGES_RESOURCE = "/activity-packages";
+    public static final String USERS_RESOURCE = "/users";
     public static final String VOLUNTEERS_RESOURCE = "/volunteers";
+    public static final String WORKGROUPS_RESOURCE = "/workgroups";
+
 
     public static final String API_ROUTE = "/api";
 
@@ -24,10 +27,10 @@ public class ControllerConstants {
 
     public static final String ACTIVITY_PACKAGES_ROUTE = API_ROUTE + ACTIVITY_PACKAGES_RESOURCE;
 
-    public static final String USERS_ROUTE = API_ROUTE + "/users";
+    public static final String USERS_ROUTE = API_ROUTE + USERS_RESOURCE;
 
     public static final String VOLUNTEERS_ROUTE = API_ROUTE + VOLUNTEERS_RESOURCE;
 
-    public static final String WORKGROUPS_ROUTE = API_ROUTE + "/workgroups";
+    public static final String WORKGROUPS_ROUTE = API_ROUTE + WORKGROUPS_RESOURCE;
 
 }
