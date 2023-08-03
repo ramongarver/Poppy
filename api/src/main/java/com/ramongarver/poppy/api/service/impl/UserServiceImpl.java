@@ -1,8 +1,11 @@
 package com.ramongarver.poppy.api.service.impl;
 
+import com.ramongarver.poppy.api.dto.user.UserCreateDto;
+import com.ramongarver.poppy.api.dto.user.UserUpdateDto;
 import com.ramongarver.poppy.api.entity.User;
 import com.ramongarver.poppy.api.exception.EmailExistsException;
 import com.ramongarver.poppy.api.exception.ResourceNotFoundException;
+import com.ramongarver.poppy.api.mapper.UserMapper;
 import com.ramongarver.poppy.api.repository.UserRepository;
 import com.ramongarver.poppy.api.service.UserService;
 import lombok.AllArgsConstructor;
@@ -14,14 +17,17 @@ import java.util.List;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final UserMapper userMapper;
+
     private final UserRepository userRepository;
 
     @Override
-    public User createUser(User user) {
-        if (doesEmailExist(user.getEmail())) {
-            throw new EmailExistsException(user.getEmail());
+    public User createUser(UserCreateDto userCreateDto) {
+        if (doesEmailExist(userCreateDto.getEmail())) {
+            throw new EmailExistsException(userCreateDto.getEmail());
         }
 
+        final User user = userMapper.fromCreateDto(userCreateDto);
         return userRepository.save(user);
     }
 
@@ -43,11 +49,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
-        final User existingUser = getUserById(user.getId());
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
-        existingUser.setEmail(user.getEmail());
+    public User updateUser(Long userId, UserUpdateDto userUpdateDto) {
+        final User existingUser = getUserById(userId);
+        userMapper.fromUpdateDto(existingUser, userUpdateDto);
         return userRepository.save(existingUser);
     }
 
@@ -56,6 +60,7 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(userId);
     }
 
+    @Override
     public boolean doesEmailExist(String email) {
         return userRepository.findByEmail(email).isPresent();
     }

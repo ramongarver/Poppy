@@ -1,7 +1,7 @@
 package com.ramongarver.poppy.api.auth;
 
 import com.ramongarver.poppy.api.controller.ControllerConstants;
-import com.ramongarver.poppy.api.dto.user.UserDto;
+import com.ramongarver.poppy.api.dto.user.UserReadDto;
 import com.ramongarver.poppy.api.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +35,8 @@ public class AuthenticationController {
     }
 
     @GetMapping(ControllerConstants.AUTH_MY_ACCOUNT_ROUTE)
-    public ResponseEntity<UserDto> myAccount() {
-        return ResponseEntity.ok(userMapper.toDto(authService.getAuthenticatedUser()));
+    public ResponseEntity<UserReadDto> myAccount() {
+        return ResponseEntity.ok(userMapper.toReadDto(authService.getAuthenticatedUser()));
     }
 
 }

@@ -1,12 +1,15 @@
 package com.ramongarver.poppy.api.controller;
 
-import com.ramongarver.poppy.api.dto.user.UserDto;
+import com.ramongarver.poppy.api.dto.user.UserCreateDto;
+import com.ramongarver.poppy.api.dto.user.UserReadDto;
+import com.ramongarver.poppy.api.dto.user.UserUpdateDto;
 import com.ramongarver.poppy.api.entity.User;
 import com.ramongarver.poppy.api.mapper.UserMapper;
 import com.ramongarver.poppy.api.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,34 +30,36 @@ public class UserController {
 
     private final UserService userService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long userId) {
+    public ResponseEntity<UserReadDto> getUserById(@PathVariable("id") Long userId) {
         final User user = userService.getUserById(userId);
-        return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
+        return new ResponseEntity<>(userMapper.toReadDto(user), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
-    public ResponseEntity<List<UserDto>> getAllUsers() {
+    public ResponseEntity<List<UserReadDto>> getAllUsers() {
         List<User> users = userService.getAllUsers();
-        return new ResponseEntity<>(userMapper.toListDto(users), HttpStatus.OK);
+        return new ResponseEntity<>(userMapper.toListReadDto(users), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody User user) {
-        final User savedUser = userService.createUser(user);
-        return new ResponseEntity<>(userMapper.toDto(savedUser), HttpStatus.CREATED);
+    public ResponseEntity<UserReadDto> createUser(@RequestBody UserCreateDto userCreateDto) {
+        final User savedUser = userService.createUser(userCreateDto);
+        return new ResponseEntity<>(userMapper.toReadDto(savedUser), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long userId,
-                                              @RequestBody UserDto userDto) {
-        final User user = userMapper.fromDto(userDto);
-        user.setId(userId);
-
-        final User updatedUser = userService.updateUser(user);
-        return new ResponseEntity<>(userMapper.toDto(updatedUser), HttpStatus.OK);
+    public ResponseEntity<UserReadDto> updateUser(@PathVariable("id") Long userId,
+                                                  @RequestBody UserUpdateDto userUpdateDto) {
+        final User updatedUser = userService.updateUser(userId, userUpdateDto);
+        return new ResponseEntity<>(userMapper.toReadDto(updatedUser), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) {
         userService.deleteUser(userId);

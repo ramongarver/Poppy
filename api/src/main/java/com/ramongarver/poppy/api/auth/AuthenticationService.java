@@ -1,5 +1,6 @@
 package com.ramongarver.poppy.api.auth;
 
+import com.ramongarver.poppy.api.dto.user.UserCreateDto;
 import com.ramongarver.poppy.api.entity.User;
 import com.ramongarver.poppy.api.enums.Role;
 import com.ramongarver.poppy.api.service.JwtService;
@@ -22,15 +23,15 @@ public class AuthenticationService {
     private final AuthenticationManager authManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        User user = User.builder()
+        final UserCreateDto userCreateDto = UserCreateDto.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
-        userService.createUser(user);
-        String jwtToken = jwtService.generateToken(user);
+        final User user = userService.createUser(userCreateDto);
+        final String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -43,18 +44,19 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        User user = userService.getUserByEmail(request.getEmail());
-        String jwtToken = jwtService.generateToken(user);
+        final User user = userService.getUserByEmail(request.getEmail());
+        final String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
     public User getAuthenticatedUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
-        if (principal instanceof User) {
-            String username = ((User) principal).getUsername();
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        final Object principal = authentication.getPrincipal();
+
+        if (principal instanceof User user) {
+            String username = user.getUsername();
             return userService.getUserByEmail(username);
         }
 
