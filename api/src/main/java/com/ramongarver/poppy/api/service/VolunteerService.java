@@ -1,12 +1,14 @@
 package com.ramongarver.poppy.api.service;
 
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerCreateDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerUpdateDto;
 import com.ramongarver.poppy.api.entity.Volunteer;
 
 import java.util.List;
 
 public interface VolunteerService {
 
-    Volunteer createVolunteer(Volunteer volunteer);
+    Volunteer createVolunteer(VolunteerCreateDto volunteerCreateDto);
 
     Volunteer getVolunteerById(Long volunteerId);
 
@@ -16,7 +18,7 @@ public interface VolunteerService {
 
     List<Volunteer> getAllVolunteers();
 
-    Volunteer updateVolunteer(Volunteer volunteer);
+    Volunteer updateVolunteer(Long volunteerId, VolunteerUpdateDto volunteerUpdateDto);
 
     void deleteVolunteer(Long volunteerId);
 

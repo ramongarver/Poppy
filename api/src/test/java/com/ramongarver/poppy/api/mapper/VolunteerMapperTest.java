@@ -60,7 +60,7 @@ class VolunteerMapperTest {
             .lastName("Test Volunteer LastName")
             .email("test@example.com")
             .password(TEST_PASSWORD_ENCODED)
-            .role(Role.COLLABORATOR)
+            .role(Role.USER)
             .startDate(START_DATE)
             .endDate(END_DATE)
             .workGroups(List.of(workGroup))
@@ -72,7 +72,7 @@ class VolunteerMapperTest {
             .lastName("Test Volunteer LastName")
             .email("test@example.com")
             .password(TEST_PASSWORD)
-            .role(Role.COLLABORATOR)
+            .role(Role.USER)
             .startDate(START_DATE)
             .endDate(END_DATE)
             .build();

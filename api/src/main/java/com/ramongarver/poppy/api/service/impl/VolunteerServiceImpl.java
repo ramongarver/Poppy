@@ -1,8 +1,11 @@
 package com.ramongarver.poppy.api.service.impl;
 
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerCreateDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerUpdateDto;
 import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.exception.EmailExistsException;
 import com.ramongarver.poppy.api.exception.ResourceNotFoundException;
+import com.ramongarver.poppy.api.mapper.VolunteerMapper;
 import com.ramongarver.poppy.api.repository.VolunteerRepository;
 import com.ramongarver.poppy.api.service.VolunteerService;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +17,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VolunteerServiceImpl implements VolunteerService {
 
+    private final VolunteerMapper volunteerMapper;
+
     private final VolunteerRepository volunteerRepository;
 
     @Override
-    public Volunteer createVolunteer(Volunteer volunteer) {
-        if (doesEmailExist(volunteer.getEmail())) {
-            throw new EmailExistsException(volunteer.getEmail());
+    public Volunteer createVolunteer(VolunteerCreateDto volunteerCreateDto) {
+        if (doesEmailExist(volunteerCreateDto.getEmail())) {
+            throw new EmailExistsException(volunteerCreateDto.getEmail());
         }
 
+        final Volunteer volunteer = volunteerMapper.fromCreateDto(volunteerCreateDto);
         return volunteerRepository.save(volunteer);
     }
 
@@ -46,15 +52,9 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public Volunteer updateVolunteer(Volunteer volunteer) {
-        final Volunteer existingVolunteer = getVolunteerById(volunteer.getId());
-        existingVolunteer.setFirstName(volunteer.getFirstName());
-        existingVolunteer.setLastName(volunteer.getLastName());
-        existingVolunteer.setEmail(volunteer.getEmail());
-        existingVolunteer.setPassword(volunteer.getPassword());
-        existingVolunteer.setRole(volunteer.getRole());
-        existingVolunteer.setStartDate(volunteer.getStartDate());
-        existingVolunteer.setEndDate(volunteer.getEndDate());
+    public Volunteer updateVolunteer(Long volunteerId, VolunteerUpdateDto volunteerUpdateDto) {
+        final Volunteer existingVolunteer = getVolunteerById(volunteerId);
+        volunteerMapper.fromUpdateDto(existingVolunteer, volunteerUpdateDto);
         return existingVolunteer;
     }
 
