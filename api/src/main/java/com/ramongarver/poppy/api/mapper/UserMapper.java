@@ -1,8 +1,11 @@
 package com.ramongarver.poppy.api.mapper;
 
-import com.ramongarver.poppy.api.dto.user.UserDto;
+import com.ramongarver.poppy.api.dto.user.UserCreateDto;
+import com.ramongarver.poppy.api.dto.user.UserReadDto;
+import com.ramongarver.poppy.api.dto.user.UserUpdateDto;
 import com.ramongarver.poppy.api.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,8 +14,10 @@ import java.util.List;
 @Component
 public class UserMapper {
 
-    public UserDto toDto(User user) {
-        return UserDto.builder()
+    private final PasswordEncoder passwordEncoder;
+
+    public UserReadDto toReadDto(User user) {
+        return UserReadDto.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
@@ -21,21 +26,31 @@ public class UserMapper {
                 .build();
     }
 
-    public List<UserDto> toListDto(List<User> users) {
+    public List<UserReadDto> toListReadDto(List<User> users) {
         return users.stream()
-                .map(this::toDto)
+                .map(this::toReadDto)
                 .toList();
     }
 
-    // Note: password is not included, we might need to handle this separately for security reasons
-    public User fromDto(UserDto userDto) {
+    public User fromCreateDto(UserCreateDto userCreateDto) {
         return User.builder()
-                .id(userDto.getId())
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .email(userDto.getEmail())
-                .role(userDto.getRole())
+                .firstName(userCreateDto.getFirstName())
+                .lastName(userCreateDto.getLastName())
+                .email(userCreateDto.getEmail())
+                .password(passwordEncoder.encode(userCreateDto.getPassword()))
+                .role(userCreateDto.getRole())
                 .build();
+    }
+
+    public void fromUpdateDto(User existingUser, UserUpdateDto userUpdateDto) {
+        existingUser.setFirstName(userUpdateDto.getFirstName() != null
+                ? userUpdateDto.getFirstName() : existingUser.getFirstName());
+        existingUser.setLastName(userUpdateDto.getLastName() != null
+                ? userUpdateDto.getLastName() : existingUser.getLastName());
+        existingUser.setEmail(userUpdateDto.getEmail() != null
+                ? userUpdateDto.getEmail() : existingUser.getEmail());
+        existingUser.setRole(userUpdateDto.getRole() != null
+                ? userUpdateDto.getRole() : existingUser.getRole());
     }
 
 }
