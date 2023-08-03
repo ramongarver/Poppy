@@ -13,6 +13,7 @@ import com.ramongarver.poppy.api.service.VolunteerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,16 +45,18 @@ public class VolunteerController {
 
     @GetMapping
     public ResponseEntity<List<VolunteerReadDto>> getAllVolunteers() {
-        List<Volunteer> volunteers = volunteerService.getAllVolunteers();
+        final List<Volunteer> volunteers = volunteerService.getAllVolunteers();
         return new ResponseEntity<>(volunteerMapper.toListReadDto(volunteers), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<VolunteerReadDto> createVolunteer(@RequestBody VolunteerCreateDto volunteerCreateDto) {
         final Volunteer savedVolunteer = volunteerService.createVolunteer(volunteerCreateDto);
         return new ResponseEntity<>(volunteerMapper.toReadDto(savedVolunteer), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN') or #volunteerId == principal.id")
     @PutMapping("{id}")
     public ResponseEntity<VolunteerReadDto> updateVolunteer(@PathVariable("id") Long volunteerId,
                                                    @RequestBody VolunteerUpdateDto volunteerUpdateDto) {
@@ -61,6 +64,7 @@ public class VolunteerController {
         return new ResponseEntity<>(volunteerMapper.toReadDto(updatedVolunteer), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteVolunteer(@PathVariable("id") Long volunteerId) {
         volunteerService.deleteVolunteer(volunteerId);

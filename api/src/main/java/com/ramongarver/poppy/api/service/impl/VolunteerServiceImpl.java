@@ -55,7 +55,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     public Volunteer updateVolunteer(Long volunteerId, VolunteerUpdateDto volunteerUpdateDto) {
         final Volunteer existingVolunteer = getVolunteerById(volunteerId);
         volunteerMapper.fromUpdateDto(existingVolunteer, volunteerUpdateDto);
-        return existingVolunteer;
+        return volunteerRepository.save(existingVolunteer);
     }
 
     @Override
