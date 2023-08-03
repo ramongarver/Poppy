@@ -57,7 +57,14 @@ public class WorkGroupServiceImpl implements WorkGroupService {
 
     @Override
     public void deleteWorkGroup(Long workGroupId) {
+        doesWorkGroupExist(workGroupId);
         workGroupRepository.deleteById(workGroupId);
+    }
+
+    private void doesWorkGroupExist(Long workGroupId) {
+        if (!workGroupRepository.existsById(workGroupId)) {
+            throw new ResourceNotFoundException(WorkGroup.class.getSimpleName(), "id", workGroupId);
+        }
     }
 
     @Override

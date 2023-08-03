@@ -59,11 +59,11 @@ public class ActivityPackageServiceImpl implements ActivityPackageService {
 
     @Override
     public void deleteActivityPackage(Long activityPackageId) {
-        doesActivityExist(activityPackageId);
+        doesActivityPackageExist(activityPackageId);
         activityPackageRepository.deleteById(activityPackageId);
     }
 
-    private void doesActivityExist(Long activityPackageId) {
+    private void doesActivityPackageExist(Long activityPackageId) {
         if (!activityPackageRepository.existsById(activityPackageId)) {
             throw new ResourceNotFoundException(ActivityPackage.class.getSimpleName(), "id", activityPackageId);
         }

@@ -57,7 +57,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) {
+        doesUserExist(userId);
         userRepository.deleteById(userId);
+    }
+
+    private void doesUserExist(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new ResourceNotFoundException(User.class.getSimpleName(), "id", userId);
+        }
     }
 
     @Override

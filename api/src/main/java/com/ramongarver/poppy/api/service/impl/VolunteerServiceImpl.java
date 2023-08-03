@@ -60,7 +60,14 @@ public class VolunteerServiceImpl implements VolunteerService {
 
     @Override
     public void deleteVolunteer(Long volunteerId) {
+        doesVolunteerExist(volunteerId);
         volunteerRepository.deleteById(volunteerId);
+    }
+
+    private void doesVolunteerExist(Long volunteerId) {
+        if (!volunteerRepository.existsById(volunteerId)) {
+            throw new ResourceNotFoundException(Volunteer.class.getSimpleName(), "id", volunteerId);
+        }
     }
 
     @Override
