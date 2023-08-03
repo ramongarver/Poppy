@@ -26,6 +26,7 @@ public class VolunteerMapper {
                 .firstName(volunteer.getFirstName())
                 .lastName(volunteer.getLastName())
                 .email(volunteer.getEmail())
+                .role(volunteer.getRole())
                 .startDate(volunteer.getStartDate())
                 .endDate(volunteer.getEndDate())
                 .workGroupIds(volunteer.getWorkGroups().stream().map(WorkGroup::getId).toList())

@@ -99,6 +99,7 @@ class VolunteerMapperTest {
                 () -> assertEquals(volunteer.getFirstName(), result.getFirstName()),
                 () -> assertEquals(volunteer.getLastName(), result.getLastName()),
                 () -> assertEquals(volunteer.getEmail(), result.getEmail()),
+                () -> assertEquals(volunteer.getRole(), result.getRole()),
                 () -> assertEquals(volunteer.getStartDate(), result.getStartDate()),
                 () -> assertEquals(volunteer.getEndDate(), result.getEndDate()),
                 () -> assertEquals(volunteer.getWorkGroups().get(0).getId(), result.getWorkGroupIds().get(0)),
@@ -116,6 +117,7 @@ class VolunteerMapperTest {
                 () -> assertEquals(volunteer.getFirstName(), result.get(0).getFirstName()),
                 () -> assertEquals(volunteer.getLastName(), result.get(0).getLastName()),
                 () -> assertEquals(volunteer.getEmail(), result.get(0).getEmail()),
+                () -> assertEquals(volunteer.getRole(), result.get(0).getRole()),
                 () -> assertEquals(volunteer.getStartDate(), result.get(0).getStartDate()),
                 () -> assertEquals(volunteer.getEndDate(), result.get(0).getEndDate()),
                 () -> assertEquals(volunteer.getWorkGroups().get(0).getId(), result.get(0).getWorkGroupIds().get(0)),
@@ -134,6 +136,7 @@ class VolunteerMapperTest {
                 () -> assertEquals(volunteerCreateDto.getLastName(), result.getLastName()),
                 () -> assertEquals(volunteerCreateDto.getEmail(), result.getEmail()),
                 () -> assertEquals(TEST_PASSWORD_ENCODED, result.getPassword()),
+                () -> assertEquals(volunteerCreateDto.getRole(), result.getRole()),
                 () -> assertEquals(volunteerCreateDto.getRole(), result.getRole()),
                 () -> assertEquals(volunteerCreateDto.getStartDate(), result.getStartDate()),
                 () -> assertEquals(volunteerCreateDto.getEndDate(), result.getEndDate())
