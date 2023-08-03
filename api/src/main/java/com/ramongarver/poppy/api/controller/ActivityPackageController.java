@@ -43,14 +43,14 @@ public class ActivityPackageController {
         return new ResponseEntity<>(activityPackageMapper.toListReadDto(activities), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping
     public ResponseEntity<ActivityPackageReadDto> createActivity(@Valid @RequestBody ActivityPackageCreateDto activityPackageCreateDto) {
         final ActivityPackage savedActivityPackage = activityPackageService.createActivityPackage(activityPackageCreateDto);
         return new ResponseEntity<>(activityPackageMapper.toReadDto(savedActivityPackage), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PutMapping("{id}")
     public ResponseEntity<ActivityPackageReadDto> updateActivity(@PathVariable("id") Long activityId,
                                                                  @RequestBody ActivityPackageUpdateDto activityPackageUpdateDto) {
@@ -58,13 +58,14 @@ public class ActivityPackageController {
         return new ResponseEntity<>(activityPackageMapper.toReadDto(updatedActivityPackage), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteActivity(@PathVariable("id") Long activityPackageId) {
         activityPackageService.deleteActivityPackage(activityPackageId);
         return new ResponseEntity<>("Activity successfully deleted!", HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping("{id}/assign-volunteers")
     public ResponseEntity<Void> assignVolunteers(@PathVariable("id") Long activityPackageId) {
         // activityAssignmentService.assignVolunteersToActivities(activityPackageId);

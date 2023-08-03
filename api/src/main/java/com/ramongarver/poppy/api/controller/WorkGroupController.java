@@ -44,14 +44,14 @@ public class WorkGroupController {
         return new ResponseEntity<>(workGroupMapper.toListReadDto(workGroups), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping
     public ResponseEntity<WorkGroupReadDto> createWorkGroup(@Valid @RequestBody WorkGroupCreateDto workGroupCreateDto) {
         final WorkGroup savedWorkGroup = workGroupService.createWorkGroup(workGroupCreateDto);
         return new ResponseEntity<>(workGroupMapper.toReadDto(savedWorkGroup), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PutMapping("{id}")
     public ResponseEntity<WorkGroupReadDto> updateWorkGroup(@PathVariable("id") Long workGroupId,
                                                             @RequestBody WorkGroupUpdateDto workGroupUpdateDto) {
@@ -59,14 +59,14 @@ public class WorkGroupController {
         return new ResponseEntity<>(workGroupMapper.toReadDto(updatedWorkGroup), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteWorkGroup(@PathVariable("id") Long workGroupId) {
         workGroupService.deleteWorkGroup(workGroupId);
         return new ResponseEntity<>("Work group successfully deleted!", HttpStatus.NO_CONTENT);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
     public ResponseEntity<Void> assignVolunteerToWorkGroup(@PathVariable("workGroupId") Long workGroupId,
                                                            @PathVariable("volunteerId") Long volunteerId) {
@@ -74,7 +74,7 @@ public class WorkGroupController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @DeleteMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
     public ResponseEntity<Void> removeVolunteerFromWorkGroup(@PathVariable("workGroupId") Long workGroupId,
                                                              @PathVariable("volunteerId") Long volunteerId) {
@@ -82,7 +82,7 @@ public class WorkGroupController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
     public ResponseEntity<Void> assignVolunteersToWorkGroup(@PathVariable("workGroupId") Long workGroupId,
                                                             @RequestBody VolunteerIdsDto volunteerIdsDto) {
@@ -90,7 +90,7 @@ public class WorkGroupController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @DeleteMapping("{workGroupId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
     public ResponseEntity<Void> removeVolunteersFromWorkGroup(@PathVariable("workGroupId") Long workGroupId,
                                                               @RequestBody VolunteerIdsDto volunteerIdsDto) {

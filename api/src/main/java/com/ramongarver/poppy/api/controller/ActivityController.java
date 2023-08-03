@@ -44,14 +44,14 @@ public class ActivityController {
         return new ResponseEntity<>(activityMapper.toListReadDto(activities), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping
     public ResponseEntity<ActivityReadDto> createActivity(@Valid @RequestBody ActivityCreateDto activityCreateDto) {
         final Activity savedActivity = activityService.createActivity(activityCreateDto);
         return new ResponseEntity<>(activityMapper.toReadDto(savedActivity), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PutMapping("{id}")
     public ResponseEntity<ActivityReadDto> updateActivity(@PathVariable("id") Long activityId,
                                                           @RequestBody ActivityUpdateDto activityUpdateDto) {
@@ -59,14 +59,14 @@ public class ActivityController {
         return new ResponseEntity<>(activityMapper.toReadDto(updatedActivity), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteActivity(@PathVariable("id") Long activityId) {
         activityService.deleteActivity(activityId);
         return new ResponseEntity<>("Activity successfully deleted!", HttpStatus.NO_CONTENT);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
     public ResponseEntity<Void> assignVolunteerToActivity(@PathVariable("activityId") Long activityId,
                                                           @PathVariable("volunteerId") Long volunteerId) {
@@ -74,7 +74,7 @@ public class ActivityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @DeleteMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE + "/{volunteerId}")
     public ResponseEntity<Void> removeVolunteerFromActivity(@PathVariable("activityId") Long activityId,
                                                             @PathVariable("volunteerId") Long volunteerId) {
@@ -82,7 +82,7 @@ public class ActivityController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @PostMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
     public ResponseEntity<Void> assignVolunteersToActivity(@PathVariable("activityId") Long activityId,
                                                            @RequestBody VolunteerIdsDto volunteerIdsDto) {
@@ -90,7 +90,7 @@ public class ActivityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
     @DeleteMapping("{activityId}" + ControllerConstants.VOLUNTEERS_RESOURCE)
     public ResponseEntity<Void> removeVolunteersFromActivity(@PathVariable("activityId") Long activityId,
                                                              @RequestBody VolunteerIdsDto volunteerIdsDto) {
