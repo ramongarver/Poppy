@@ -57,11 +57,11 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public void deleteActivity(Long activityId) {
-        doesActivityExist(activityId);
+        verifyActivityExists(activityId);
         activityRepository.deleteById(activityId);
     }
 
-    private void doesActivityExist(Long activityId) {
+    private void verifyActivityExists(Long activityId) {
         if (!activityRepository.existsById(activityId)) {
             throw new ResourceNotFoundException(Activity.class.getSimpleName(), "id", activityId);
         }

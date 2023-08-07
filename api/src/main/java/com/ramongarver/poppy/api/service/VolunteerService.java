@@ -22,6 +22,8 @@ public interface VolunteerService {
 
     void deleteVolunteer(Long volunteerId);
 
+    void verifyVolunteerExists(Long volunteerId);
+
     boolean doesEmailExist(String email);
 
 }

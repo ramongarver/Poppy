@@ -1,0 +1,15 @@
+[
+  {
+    "volunteer": {
+      "id": 2
+    },
+    "activityPackage": {
+      "id": 1
+    },
+    "activities": [
+      {
+        "id": 1
+      }
+    ]
+  }
+]

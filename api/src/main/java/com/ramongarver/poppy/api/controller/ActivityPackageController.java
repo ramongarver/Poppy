@@ -3,9 +3,15 @@ package com.ramongarver.poppy.api.controller;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageCreateDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageReadDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageUpdateDto;
+import com.ramongarver.poppy.api.dto.volunteeravailability.VolunteerAvailabilityCreateDto;
+import com.ramongarver.poppy.api.dto.volunteeravailability.VolunteerAvailabilityReadDto;
+import com.ramongarver.poppy.api.dto.volunteeravailability.VolunteerAvailabilityUpdateDto;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
+import com.ramongarver.poppy.api.entity.VolunteerAvailability;
 import com.ramongarver.poppy.api.mapper.ActivityPackageMapper;
+import com.ramongarver.poppy.api.mapper.VolunteerAvailabilityMapper;
 import com.ramongarver.poppy.api.service.ActivityPackageService;
+import com.ramongarver.poppy.api.service.VolunteerAvailabilityService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,11 +34,13 @@ import java.util.List;
 public class ActivityPackageController {
 
     private final ActivityPackageMapper activityPackageMapper;
+    private final VolunteerAvailabilityMapper volunteerAvailabilityMapper;
 
     private final ActivityPackageService activityPackageService;
+    private final VolunteerAvailabilityService volunteerAvailabilityService;
 
-    @GetMapping("{id}")
-    public ResponseEntity<ActivityPackageReadDto> getActivityById(@PathVariable("id") Long activityPackageId) {
+    @GetMapping("{activityPackageId}")
+    public ResponseEntity<ActivityPackageReadDto> getActivityPackageById(@PathVariable("activityPackageId") Long activityPackageId) {
         final ActivityPackage activityPackage = activityPackageService.getActivityPackageById(activityPackageId);
         return new ResponseEntity<>(activityPackageMapper.toReadDto(activityPackage), HttpStatus.OK);
     }
@@ -51,23 +59,66 @@ public class ActivityPackageController {
     }
 
     @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
-    @PutMapping("{id}")
-    public ResponseEntity<ActivityPackageReadDto> updateActivity(@PathVariable("id") Long activityId,
+    @PutMapping("{activityPackageId}")
+    public ResponseEntity<ActivityPackageReadDto> updateActivity(@PathVariable("activityPackageId") Long activityId,
                                                                  @RequestBody ActivityPackageUpdateDto activityPackageUpdateDto) {
         final ActivityPackage updatedActivityPackage = activityPackageService.updateActivityPackage(activityId, activityPackageUpdateDto);
         return new ResponseEntity<>(activityPackageMapper.toReadDto(updatedActivityPackage), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteActivity(@PathVariable("id") Long activityPackageId) {
+    @DeleteMapping("{activityPackageId}")
+    public ResponseEntity<String> deleteActivity(@PathVariable("activityPackageId") Long activityPackageId) {
         activityPackageService.deleteActivityPackage(activityPackageId);
         return new ResponseEntity<>("Activity successfully deleted!", HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("{activityPackageId}" + ControllerConstants.VOLUNTEER_AVAILABILITIES_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<VolunteerAvailabilityReadDto> getVolunteerAvailabilityByActivityPackageByIdAndVolunteerId(@PathVariable("activityPackageId") Long activityPackageId,
+                                                                                                                    @PathVariable("volunteerId") Long volunteerId) {
+        final VolunteerAvailability volunteerAvailability =
+                volunteerAvailabilityService.getVolunteerAvailabilityByActivityPackageIdAndVolunteerId(activityPackageId, volunteerId);
+        return new ResponseEntity<>(volunteerAvailabilityMapper.toReadDto(volunteerAvailability), HttpStatus.OK);
+    }
+
+    @GetMapping("{activityPackageId}" + ControllerConstants.VOLUNTEER_AVAILABILITIES_RESOURCE)
+    public ResponseEntity<List<VolunteerAvailabilityReadDto>> getAllVolunteerAvailabilities(@PathVariable("activityPackageId") Long activityPackageId) {
+        final List<VolunteerAvailability> volunteerAvailabilities =
+                volunteerAvailabilityService.getAllVolunteerAvailabilitiesByActivityPackageId(activityPackageId);
+        return new ResponseEntity<>(volunteerAvailabilityMapper.toListReadDto(volunteerAvailabilities), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') OR #volunteerId == principal.id")
+    @PostMapping("{activityPackageId}" + ControllerConstants.VOLUNTEER_AVAILABILITIES_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<VolunteerAvailabilityReadDto> createVolunteerAvailability(@PathVariable("activityPackageId") Long activityPackageId,
+                                                                                    @PathVariable("volunteerId") Long volunteerId,
+                                                                                    @Valid @RequestBody VolunteerAvailabilityCreateDto volunteerAvailabilityCreateDto) {
+        final VolunteerAvailability savedVolunteerAvailability = volunteerAvailabilityService
+                .createActivityPackageVolunteerAvailability(activityPackageId, volunteerId, volunteerAvailabilityCreateDto);
+        return new ResponseEntity<>(volunteerAvailabilityMapper.toReadDto(savedVolunteerAvailability), HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') OR #volunteerId == principal.id")
+    @PutMapping("{activityPackageId}" + ControllerConstants.VOLUNTEER_AVAILABILITIES_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<VolunteerAvailabilityReadDto> updateVolunteerAvailability(@PathVariable("activityPackageId") Long activityPackageId,
+                                                                                    @PathVariable("volunteerId") Long volunteerId,
+                                                                                    @RequestBody VolunteerAvailabilityUpdateDto volunteerAvailabilityUpdateDto) {
+        final VolunteerAvailability updatedVolunteerAvailability = volunteerAvailabilityService
+                .updateVolunteerAvailability(activityPackageId, volunteerId, volunteerAvailabilityUpdateDto);
+        return new ResponseEntity<>(volunteerAvailabilityMapper.toReadDto(updatedVolunteerAvailability), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') OR #volunteerId == principal.id")
+    @DeleteMapping("{activityPackageId}" + ControllerConstants.VOLUNTEER_AVAILABILITIES_RESOURCE + "/{volunteerId}")
+    public ResponseEntity<String> deleteVolunteerAvailability(@PathVariable("activityPackageId") Long activityPackageId,
+                                                              @PathVariable("volunteerId") Long volunteerId) {
+        volunteerAvailabilityService.deleteVolunteerAvailability(activityPackageId, volunteerId);
+        return new ResponseEntity<>("Volunteer availability successfully deleted!", HttpStatus.NO_CONTENT);
+    }
+
     @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
-    @PostMapping("{id}/assign-volunteers")
-    public ResponseEntity<Void> assignVolunteers(@PathVariable("id") Long activityPackageId) {
+    @PostMapping("{activityPackageId}/assign-volunteers")
+    public ResponseEntity<Void> assignVolunteers(@PathVariable("activityPackageId") Long activityPackageId) {
         // activityAssignmentService.assignVolunteersToActivities(activityPackageId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

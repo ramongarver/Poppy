@@ -32,8 +32,8 @@ public class WorkGroupController {
 
     private final WorkGroupService workGroupService;
 
-    @GetMapping("{id}")
-    public ResponseEntity<WorkGroupReadDto> getWorkGroupById(@PathVariable("id") Long workGroupId) {
+    @GetMapping("{workGroupId}")
+    public ResponseEntity<WorkGroupReadDto> getWorkGroupById(@PathVariable("workGroupId") Long workGroupId) {
         final WorkGroup workGroup = workGroupService.getWorkGroupById(workGroupId);
         return new ResponseEntity<>(workGroupMapper.toReadDto(workGroup), HttpStatus.OK);
     }
@@ -52,16 +52,16 @@ public class WorkGroupController {
     }
 
     @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
-    @PutMapping("{id}")
-    public ResponseEntity<WorkGroupReadDto> updateWorkGroup(@PathVariable("id") Long workGroupId,
+    @PutMapping("{workGroupId}")
+    public ResponseEntity<WorkGroupReadDto> updateWorkGroup(@PathVariable("workGroupId") Long workGroupId,
                                                             @RequestBody WorkGroupUpdateDto workGroupUpdateDto) {
         final WorkGroup updatedWorkGroup = workGroupService.updateWorkGroup(workGroupId, workGroupUpdateDto);
         return new ResponseEntity<>(workGroupMapper.toReadDto(updatedWorkGroup), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteWorkGroup(@PathVariable("id") Long workGroupId) {
+    @DeleteMapping("{workGroupId}")
+    public ResponseEntity<String> deleteWorkGroup(@PathVariable("workGroupId") Long workGroupId) {
         workGroupService.deleteWorkGroup(workGroupId);
         return new ResponseEntity<>("Work group successfully deleted!", HttpStatus.NO_CONTENT);
     }

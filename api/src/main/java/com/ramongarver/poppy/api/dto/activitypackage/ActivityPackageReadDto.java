@@ -1,5 +1,6 @@
 package com.ramongarver.poppy.api.dto.activitypackage;
 
+import com.ramongarver.poppy.api.dto.volunteeravailability.VolunteerAvailabilityReadDto;
 import com.ramongarver.poppy.api.enums.ActivityPackageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,5 +35,7 @@ public class ActivityPackageReadDto {
     private List<Long> activityIds;
 
     private boolean areVolunteersAssigned;
+
+    private List<VolunteerAvailabilityReadDto> volunteerAvailabilities;
 
 }

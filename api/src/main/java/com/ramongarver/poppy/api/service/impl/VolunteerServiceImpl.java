@@ -23,10 +23,7 @@ public class VolunteerServiceImpl implements VolunteerService {
 
     @Override
     public Volunteer createVolunteer(VolunteerCreateDto volunteerCreateDto) {
-        if (doesEmailExist(volunteerCreateDto.getEmail())) {
-            throw new EmailExistsException(volunteerCreateDto.getEmail());
-        }
-
+        verifyEmailNotExists(volunteerCreateDto.getEmail());
         final Volunteer volunteer = volunteerMapper.fromCreateDto(volunteerCreateDto);
         return volunteerRepository.save(volunteer);
     }
@@ -60,13 +57,20 @@ public class VolunteerServiceImpl implements VolunteerService {
 
     @Override
     public void deleteVolunteer(Long volunteerId) {
-        doesVolunteerExist(volunteerId);
+        verifyVolunteerExists(volunteerId);
         volunteerRepository.deleteById(volunteerId);
     }
 
-    private void doesVolunteerExist(Long volunteerId) {
+    @Override
+    public void verifyVolunteerExists(Long volunteerId) {
         if (!volunteerRepository.existsById(volunteerId)) {
             throw new ResourceNotFoundException(Volunteer.class.getSimpleName(), "id", volunteerId);
+        }
+    }
+
+    private void verifyEmailNotExists(String email) {
+        if (doesEmailExist(email)) {
+            throw new EmailExistsException(email);
         }
     }
 

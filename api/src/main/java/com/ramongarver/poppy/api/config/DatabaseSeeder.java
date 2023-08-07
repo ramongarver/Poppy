@@ -5,10 +5,12 @@ import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
 import com.ramongarver.poppy.api.entity.User;
 import com.ramongarver.poppy.api.entity.Volunteer;
+import com.ramongarver.poppy.api.entity.VolunteerAvailability;
 import com.ramongarver.poppy.api.entity.WorkGroup;
 import com.ramongarver.poppy.api.repository.ActivityPackageRepository;
 import com.ramongarver.poppy.api.repository.ActivityRepository;
 import com.ramongarver.poppy.api.repository.UserRepository;
+import com.ramongarver.poppy.api.repository.VolunteerAvailabilityRepository;
 import com.ramongarver.poppy.api.repository.VolunteerRepository;
 import com.ramongarver.poppy.api.repository.WorkGroupRepository;
 import lombok.AllArgsConstructor;
@@ -29,11 +31,12 @@ import java.util.List;
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
 
-    private final UserRepository userRepository;
-    private final VolunteerRepository volunteerRepository;
-    private final ActivityRepository activityRepository;
-    private final WorkGroupRepository workGroupRepository;
     private final ActivityPackageRepository activityPackageRepository;
+    private final ActivityRepository activityRepository;
+    private final UserRepository userRepository;
+    private final VolunteerAvailabilityRepository volunteerAvailabilityRepository;
+    private final VolunteerRepository volunteerRepository;
+    private final WorkGroupRepository workGroupRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -43,11 +46,12 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        loadFromJsonAndSave("workGroups.json", workGroupRepository, WorkGroup.class);
         loadFromJsonAndSave("users.json", userRepository, User.class);
         loadFromJsonAndSave("volunteers.json", volunteerRepository, Volunteer.class);
-        loadFromJsonAndSave("activities.json", activityRepository, Activity.class);
-        loadFromJsonAndSave("workGroups.json", workGroupRepository, WorkGroup.class);
         loadFromJsonAndSave("activityPackages.json", activityPackageRepository, ActivityPackage.class);
+        loadFromJsonAndSave("activities.json", activityRepository, Activity.class);
+        loadFromJsonAndSave("volunteerAvailabilities.json", volunteerAvailabilityRepository, VolunteerAvailability.class);
     }
 
     private <T> void loadFromJsonAndSave(String filename, JpaRepository<T, Long> repository, Class<T> type) {
