@@ -23,6 +23,8 @@ public interface ActivityPackageService {
 
     void deleteActivityPackage(Long activityPackageId);
 
+    void verifyActivityPackageExists(Long activityPackageId);
+
     ActivityPackage assignActivitiesToActivityPackage(Long activityPackageId, List<Long> activityIds);
 
     ActivityPackage assignActivityToActivityPackage(Long activityPackageId, Long activityId);

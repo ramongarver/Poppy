@@ -23,10 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(UserCreateDto userCreateDto) {
-        if (doesEmailExist(userCreateDto.getEmail())) {
-            throw new EmailExistsException(userCreateDto.getEmail());
-        }
-
+        verifyEmailNotExists(userCreateDto.getEmail());
         final User user = userMapper.fromCreateDto(userCreateDto);
         return userRepository.save(user);
     }
@@ -57,13 +54,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) {
-        doesUserExist(userId);
+        verifyUserExists(userId);
         userRepository.deleteById(userId);
     }
 
-    private void doesUserExist(Long userId) {
+    private void verifyUserExists(Long userId) {
         if (!userRepository.existsById(userId)) {
             throw new ResourceNotFoundException(User.class.getSimpleName(), "id", userId);
+        }
+    }
+
+    private void verifyEmailNotExists(String email) {
+        if (doesEmailExist(email)) {
+            throw new EmailExistsException(email);
         }
     }
 
