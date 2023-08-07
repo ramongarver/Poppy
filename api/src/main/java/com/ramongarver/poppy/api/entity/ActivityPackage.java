@@ -8,7 +8,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,9 +48,11 @@ public class ActivityPackage {
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isVisible;
 
-    @OneToMany
-    @JoinColumn(name = "activity_package_id")
+    @OneToMany(mappedBy = "activityPackage")
     private List<Activity> activities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "activityPackage")
+    private List<VolunteerAvailability> volunteerAvailabilities = new ArrayList<>();
 
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean areVolunteersAssigned;

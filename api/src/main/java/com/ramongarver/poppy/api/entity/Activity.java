@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -53,7 +54,8 @@ public class Activity {
     )
     private List<Volunteer> volunteers = new ArrayList<>();
 
-    @Column(name = "activity_package_id")
-    private Long activityPackageId;
+    @ManyToOne
+    @JoinColumn(name = "activity_package_id")
+    private ActivityPackage activityPackage;
 
 }
