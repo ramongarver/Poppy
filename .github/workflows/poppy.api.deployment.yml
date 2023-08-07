@@ -42,6 +42,7 @@ jobs:
 
   build-and-push:
     name: Build and push app to ACR
+    needs: test
     runs-on: ubuntu-latest
     environment: PRODUCTION
     
@@ -89,7 +90,7 @@ jobs:
   deploy-to-production:
       name: Deploy to production
       if: (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch') && github.event_name != 'pull_request'
-      needs: build-and-test
+      needs: build-and-push
       runs-on: ubuntu-latest
       environment: PRODUCTION
       steps:
