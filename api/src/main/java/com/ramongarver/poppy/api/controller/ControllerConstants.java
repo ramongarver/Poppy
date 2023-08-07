@@ -11,6 +11,7 @@ public class ControllerConstants {
     public static final String ACTIVITY_PACKAGES_RESOURCE = "/activity-packages";
     public static final String USERS_RESOURCE = "/users";
     public static final String VOLUNTEERS_RESOURCE = "/volunteers";
+    public static final String VOLUNTEER_AVAILABILITIES_RESOURCE = "/volunteer-availabilities";
     public static final String WORKGROUPS_RESOURCE = "/workgroups";
 
 
