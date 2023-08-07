@@ -31,8 +31,8 @@ public class UserController {
     private final UserService userService;
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("{id}")
-    public ResponseEntity<UserReadDto> getUserById(@PathVariable("id") Long userId) {
+    @GetMapping("{userId}")
+    public ResponseEntity<UserReadDto> getUserById(@PathVariable("userId") Long userId) {
         final User user = userService.getUserById(userId);
         return new ResponseEntity<>(userMapper.toReadDto(user), HttpStatus.OK);
     }
@@ -52,16 +52,16 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("{id}")
-    public ResponseEntity<UserReadDto> updateUser(@PathVariable("id") Long userId,
+    @PutMapping("{userId}")
+    public ResponseEntity<UserReadDto> updateUser(@PathVariable("userId") Long userId,
                                                   @RequestBody UserUpdateDto userUpdateDto) {
         final User updatedUser = userService.updateUser(userId, userUpdateDto);
         return new ResponseEntity<>(userMapper.toReadDto(updatedUser), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) {
+    @DeleteMapping("{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable("userId") Long userId) {
         userService.deleteUser(userId);
         return new ResponseEntity<>("User successfully deleted!", HttpStatus.NO_CONTENT);
     }
