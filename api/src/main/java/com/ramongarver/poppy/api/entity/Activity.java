@@ -44,7 +44,7 @@ public class Activity {
     private String place;
 
     @Column(nullable = false, columnDefinition = "int default 1")
-    private int numberOfCoordinators;
+    private int numberOfCoordinators = 2;
 
     @ManyToMany
     @JoinTable(
