@@ -2,6 +2,8 @@ package com.ramongarver.poppy.api.controller;
 
 
 import com.ramongarver.poppy.api.dto.activity.ActivityReadDto;
+import com.ramongarver.poppy.api.dto.user.password.PasswordChangeDto;
+import com.ramongarver.poppy.api.dto.user.password.PasswordResetDto;
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerCreateDto;
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerReadDto;
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerUpdateDto;
@@ -16,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -59,9 +62,25 @@ public class VolunteerController {
     @PreAuthorize("hasRole('ADMIN') OR #volunteerId == principal.id")
     @PutMapping("{volunteerId}")
     public ResponseEntity<VolunteerReadDto> updateVolunteer(@PathVariable("volunteerId") Long volunteerId,
-                                                   @RequestBody VolunteerUpdateDto volunteerUpdateDto) {
+                                                            @RequestBody VolunteerUpdateDto volunteerUpdateDto) {
         final Volunteer updatedVolunteer = volunteerService.updateVolunteer(volunteerId, volunteerUpdateDto);
         return new ResponseEntity<>(volunteerMapper.toReadDto(updatedVolunteer), HttpStatus.OK);
+    }
+
+    @PreAuthorize("#volunteerId == principal.id")
+    @PatchMapping("{volunteerId}" + ControllerConstants.VOLUNTEERS_RESOURCE_PASSWORD + "/change")
+    public ResponseEntity<String> changePassword(@PathVariable("volunteerId") Long volunteerId,
+                                                 @RequestBody PasswordChangeDto passwordChangeDto) {
+        volunteerService.changePassword(volunteerId, passwordChangeDto);
+        return new ResponseEntity<>("Password successfully changed!", HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PatchMapping("{volunteerId}" + ControllerConstants.VOLUNTEERS_RESOURCE_PASSWORD + "/reset")
+    public ResponseEntity<String> resetPassword(@PathVariable("volunteerId") Long volunteerId,
+                                                @RequestBody PasswordResetDto passwordResetDto) {
+        volunteerService.resetPassword(volunteerId, passwordResetDto);
+        return new ResponseEntity<>("Password successfully reset!", HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -70,7 +89,7 @@ public class VolunteerController {
         volunteerService.deleteVolunteer(volunteerId);
         return new ResponseEntity<>("Volunteer successfully deleted!", HttpStatus.NO_CONTENT);
     }
-    
+
     @GetMapping("{volunteerId}" + ControllerConstants.ACTIVITIES_RESOURCE)
     public ResponseEntity<List<ActivityReadDto>> getVolunteerActivities(
             @PathVariable("volunteerId") Long volunteerId,
