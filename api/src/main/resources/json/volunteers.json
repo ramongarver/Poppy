@@ -4,7 +4,7 @@
         "lastName": "Ramirez Varela",
         "email": "pablo.ramirez@poppy-test.com",
         "password": "",
-        "role": "MANAGER",
+        "role": "ADMIN",
         "startDate": "2022-09-01"
     },
     {
@@ -12,7 +12,7 @@
         "lastName": "Martinez Lara",
         "email": "raul.martinez@poppy-test.com",
         "password": "",
-        "role": "USER",
+        "role": "MANAGER",
         "startDate": "2021-02-01"
     },
     {
