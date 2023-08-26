@@ -16,5 +16,206 @@
     "activityPackage": {
       "id": 1
     }
+  },
+  {
+    "name": "Tapas",
+    "description": "Tomamos unas tapas mientras entablamos conversación con mucha gente",
+    "localDateTime": "2023-10-02T21:00:00",
+    "place": "Bamboleo Canalla. Tapas Vino Copas y Jaleo",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Speed dating",
+    "description": "Vamos hablando con mucha gente, cambiando de persona cada pocos minutos",
+    "localDateTime": "2023-10-03T20:00:00",
+    "place": "Mulligan´s Irish Tavern",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Bowling time",
+    "description": "Jugamos a los bolos. Cogemos el autobús en Triunfo y vamos a la bolera",
+    "localDateTime": "2023-10-04T17:30:00",
+    "place": "Triunfo. Ozone Bowling Granada",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Cata de cervezas",
+    "description": "Probamos diferentes cervezas en un lugar especializado",
+    "localDateTime": "2023-10-04T00:00:00",
+    "place": "Capitán Amargo Craft Beer Bar",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Gymkhana feminista",
+    "description": "Realizamos actividades para fomentar la igualdad entre mujeres y hombres",
+    "localDateTime": "2023-10-05T17:00:00",
+    "place": "Plaza Nueva",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Tour de la zona Centro - UC3M",
+    "description": "Tour por los diferentes monumentos del Centro de Granada para la sección de UC3M",
+    "localDateTime": "2023-10-06T18:00:00",
+    "place": "Plaza Nueva",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Fiesta",
+    "description": "Disfrutamos de una noche de fiesta, música y diversión",
+    "localDateTime": "2023-10-06T23:59:00",
+    "place": "Azotea de Paripé",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Local Erasmus Games | LEG",
+    "description": "Jugamos a diferentes deportes para formar equipos y seleccionar a los mejores participantes",
+    "localDateTime": "2023-10-07T10:00:00",
+    "place": "Pistas deportivas del campus de Fuentenueva",
+    "numberOfCoordinators": 3,
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Tour del barrio del Albayzín - UCO",
+    "description": "Tour por los diferentes monumentos del barrio del Albayzín para la sección de UCO",
+    "localDateTime": "2023-10-07T11:00:00",
+    "place": "Plaza Nueva",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Fiesta UC3M",
+    "description": "Disfrutamos de una noche de fiesta, música y diversión",
+    "localDateTime": "2023-10-07T23:45:00",
+    "place": "Camden",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Tour del barrio del Albayzín - UC3M",
+    "description": "Tour por los diferentes monumentos del barrio del Albayzín para la sección de UC3M",
+    "localDateTime": "2023-10-08T11:00:00",
+    "place": "Plaza Nueva",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Hiking | Los Cahorros",
+    "description": "Recorremos los más bonitos puentes del sendero de Los Cahorros (Monachil)",
+    "localDateTime": "2023-10-08T09:00:00",
+    "place": "Paseo De Los Basilios V",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Charla sobre reciclaje",
+    "description": "Contamos las mejores prácticas para reciclar y fomentar una cultura de consumo sostenible",
+    "localDateTime": "2023-10-09T19:00:00",
+    "place": "Facultad de Ciencias",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Tapas",
+    "description": "Tomamos unas tapas mientras entablamos conversación con mucha gente",
+    "localDateTime": "2023-10-09T21:00:00",
+    "place": "Bamboleo Canalla. Tapas Vino Copas y Jaleo",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Tarde de teterías",
+    "description": "Disfrutamos de la cultura árabe visitando sus teterías",
+    "localDateTime": "2023-10-10T18:00:00",
+    "place": "Cruce de C. Elvira con C. Calderería la Nueva",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Pub crawl Einstein",
+    "description": "Recorremos los pubs alrededor de Plaza Einstein en busca de un gran premio",
+    "localDateTime": "2023-10-10T22:00:00",
+    "place": "Plaza Einstein",
+    "numberOfCoordinators": 8,
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Jam session",
+    "description": "Cantamos, bailamos, actuamos y disfrutamos",
+    "localDateTime": "2023-10-11T21:00:00",
+    "place": "La Tertulia",
+    "numberOfCoordinators": 3,
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Torneo de futbolín",
+    "description": "Luchamos para llevarnos el trofeo de futbolín, ¿quién será el ganador?",
+    "localDateTime": "2023-10-12T22:00:00",
+    "place": "RocknRolla Underground Club",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "St. Patrick",
+    "description": "Disfrutamos de la fiesta de los ingleses",
+    "localDateTime": "2023-10-13T20:00:00",
+    "place": "Mulligan´s Irish Tavern",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Urban garden",
+    "description": "Visitamos y trabajos en el huerto urbano de Granada",
+    "localDateTime": "2023-10-14T10:00:00",
+    "place": "Triunfo",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Spikeball solidario",
+    "description": "Jugamos partidas de spikeball",
+    "localDateTime": "2023-10-14T16:00:00",
+    "place": "Parque Federico García Lorca",
+    "activityPackage": {
+      "id": 4
+    }
+  },
+  {
+    "name": "Hiking | Llano de la Perdiz",
+    "description": "Visitamos andando la zona recreativa natural del Llano de la Perdiz",
+    "localDateTime": "2023-10-15T09:00:00",
+    "place": "Plaza Nueva",
+    "activityPackage": {
+      "id": 4
+    }
   }
 ]

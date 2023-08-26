@@ -1,6 +1,6 @@
 [
   {
-    "name": "Actividades  | Mayo 2023",
+    "name": "Actividades | Mayo 2023",
     "description": "Paquete de actividades para mayo de 2023",
     "type": "GENERAL",
     "availabilityStartDate": "2023-04-25",
@@ -19,5 +19,12 @@
     "type": "OFFICE",
     "availabilityStartDate": "2022-12-20",
     "availabilityEndDate": "2022-12-29"
+  },
+  {
+    "name": "Actividades | Octubre 2023 (Primera quincena)",
+    "description": "Paquete de actividades para octubre de 2023 (primera quincena)",
+    "type": "GENERAL",
+    "availabilityStartDate": "2023-08-01",
+    "availabilityEndDate": "2023-08-20"
   }
 ]
