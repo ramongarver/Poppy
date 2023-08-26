@@ -1,5 +1,7 @@
 package com.ramongarver.poppy.api.service;
 
+import com.ramongarver.poppy.api.dto.user.password.PasswordChangeDto;
+import com.ramongarver.poppy.api.dto.user.password.PasswordResetDto;
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerCreateDto;
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerUpdateDto;
 import com.ramongarver.poppy.api.entity.Volunteer;
@@ -25,5 +27,9 @@ public interface VolunteerService {
     void verifyVolunteerExists(Long volunteerId);
 
     boolean doesEmailExist(String email);
+
+    void changePassword(Long volunteerId, PasswordChangeDto passwordChangeDto);
+
+    void resetPassword(Long volunteerId, PasswordResetDto passwordResetDto);
 
 }
