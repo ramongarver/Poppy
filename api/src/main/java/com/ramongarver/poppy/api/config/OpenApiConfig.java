@@ -22,7 +22,7 @@ public class OpenApiConfig {
                 .termsOfService("http://swagger.io/terms/")
                 .contact(new Contact().name("Ramón García Verjaga").url("").email(""))
                 .license(new License().name("Copyright © 2023 Ramón García Verjaga").url(""))
-                .version("0.4.0"))
+                .version("0.5.0"))
             .components(new Components()
                 .addSecuritySchemes("JWT Bearer Authentication", new SecurityScheme()
                     .type(SecurityScheme.Type.HTTP)

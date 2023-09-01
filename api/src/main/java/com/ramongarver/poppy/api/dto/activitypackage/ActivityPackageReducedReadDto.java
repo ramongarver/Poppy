@@ -7,29 +7,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ActivityPackageUpdateDto {
+public class ActivityPackageReducedReadDto {
+
+    private Long id;
 
     private String name;
 
     private String description;
 
     private ActivityPackageType type;
-
-    private LocalDate availabilityStartDate;
-
-    private LocalDate availabilityEndDate;
-
-    private Integer maxActivitiesPerVolunteer;
-
-    private Integer minCoordinatorsToIgnoreLimit;
-
-    private Boolean isVisible;
 
 }

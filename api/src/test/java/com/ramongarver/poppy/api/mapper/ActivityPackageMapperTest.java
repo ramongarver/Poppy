@@ -37,6 +37,8 @@ class ActivityPackageMapperTest {
             .type(ActivityPackageType.GENERAL)
             .availabilityStartDate(LocalDate.of(2023, 6, 26))
             .availabilityEndDate(LocalDate.of(2023, 6, 30))
+            .maxActivitiesPerVolunteer(2)
+            .minCoordinatorsToIgnoreLimit(3)
             .isVisible(false)
             .activities(Collections.singletonList(activity))
             .areVolunteersAssigned(false)
@@ -48,6 +50,8 @@ class ActivityPackageMapperTest {
             .type(ActivityPackageType.GENERAL)
             .availabilityStartDate(LocalDate.of(2023, 6, 26))
             .availabilityEndDate(LocalDate.of(2023, 6, 30))
+            .maxActivitiesPerVolunteer(2)
+            .minCoordinatorsToIgnoreLimit(3)
             .isVisible(false)
             .build();
     private final ActivityPackageUpdateDto activityPackageUpdateDto = ActivityPackageUpdateDto.builder()
@@ -56,6 +60,8 @@ class ActivityPackageMapperTest {
             .type(ActivityPackageType.GENERAL)
             .availabilityStartDate(LocalDate.of(2024, 1, 26))
             .availabilityEndDate(LocalDate.of(2024, 6, 30))
+            .maxActivitiesPerVolunteer(2)
+            .minCoordinatorsToIgnoreLimit(3)
             .isVisible(true)
             .build();
     private final ActivityPackageUpdateDto activityPackageUpdateDtoWithNullAttributes = ActivityPackageUpdateDto.builder()
@@ -64,22 +70,26 @@ class ActivityPackageMapperTest {
             .type(null)
             .availabilityStartDate(null)
             .availabilityEndDate(null)
+            .maxActivitiesPerVolunteer(null)
+            .minCoordinatorsToIgnoreLimit(null)
             .isVisible(false)
             .build();
 
     @BeforeEach
     public void setup() {
         activityPackage = ActivityPackage.builder()
-            .id(1L)
-            .name("Test ActivityPackage Name")
-            .description("Test ActivityPackage Description")
-            .type(ActivityPackageType.GENERAL)
-            .availabilityStartDate(LocalDate.of(2023, 6, 26))
-            .availabilityEndDate(LocalDate.of(2023, 6, 30))
-            .isVisible(false)
-            .activities(Collections.singletonList(activity))
-            .areVolunteersAssigned(false)
-            .build();
+                .id(1L)
+                .name("Test ActivityPackage Name")
+                .description("Test ActivityPackage Description")
+                .type(ActivityPackageType.GENERAL)
+                .availabilityStartDate(LocalDate.of(2023, 6, 26))
+                .availabilityEndDate(LocalDate.of(2023, 6, 30))
+                .maxActivitiesPerVolunteer(2)
+                .minCoordinatorsToIgnoreLimit(3)
+                .isVisible(false)
+                .activities(Collections.singletonList(activity))
+                .areVolunteersAssigned(false)
+                .build();
     }
 
     @Test
@@ -93,9 +103,9 @@ class ActivityPackageMapperTest {
                 () -> assertEquals(activityPackage.getType(), result.getType()),
                 () -> assertEquals(activityPackage.getAvailabilityStartDate(), result.getAvailabilityStartDate()),
                 () -> assertEquals(activityPackage.getAvailabilityEndDate(), result.getAvailabilityEndDate()),
-                () -> assertEquals(activityPackage.isVisible(), result.isVisible()),
+                () -> assertEquals(activityPackage.getIsVisible(), result.getIsVisible()),
                 () -> assertEquals(activityPackage.getActivities().get(0).getId(), result.getActivityIds().get(0)),
-                () -> assertEquals(activityPackage.isAreVolunteersAssigned(), result.isAreVolunteersAssigned())
+                () -> assertEquals(activityPackage.getAreVolunteersAssigned(), result.getAreVolunteersAssigned())
         );
     }
 
@@ -112,9 +122,9 @@ class ActivityPackageMapperTest {
                 () -> assertEquals(activityPackage.getType(), result.getType()),
                 () -> assertEquals(activityPackage.getAvailabilityStartDate(), result.getAvailabilityStartDate()),
                 () -> assertEquals(activityPackage.getAvailabilityEndDate(), result.getAvailabilityEndDate()),
-                () -> assertEquals(activityPackage.isVisible(), result.isVisible()),
+                () -> assertEquals(activityPackage.getIsVisible(), result.getIsVisible()),
                 () -> assertTrue(result.getActivityIds().isEmpty()),
-                () -> assertEquals(activityPackage.isAreVolunteersAssigned(), result.isAreVolunteersAssigned())
+                () -> assertEquals(activityPackage.getAreVolunteersAssigned(), result.getAreVolunteersAssigned())
         );
     }
 
@@ -138,7 +148,10 @@ class ActivityPackageMapperTest {
                 () -> assertEquals(activityPackageCreateDto.getType(), result.getType()),
                 () -> assertEquals(activityPackageCreateDto.getAvailabilityStartDate(), result.getAvailabilityStartDate()),
                 () -> assertEquals(activityPackageCreateDto.getAvailabilityEndDate(), result.getAvailabilityEndDate()),
-                () -> assertEquals(activityPackageCreateDto.isVisible(), result.isVisible())
+                () -> assertEquals(activityPackageCreateDto.getMaxActivitiesPerVolunteer(), result.getMaxActivitiesPerVolunteer()),
+                () -> assertEquals(activityPackageCreateDto.getMinCoordinatorsToIgnoreLimit(), result.getMinCoordinatorsToIgnoreLimit()),
+                () -> assertEquals(activityPackageCreateDto.getIsVisible(), result.getIsVisible()),
+                () -> assertEquals(Boolean.FALSE, result.getAreVolunteersAssigned())
         );
     }
 
@@ -153,7 +166,9 @@ class ActivityPackageMapperTest {
                 () -> assertEquals(activityPackageUpdateDto.getType(), existingActivityPackage.getType()),
                 () -> assertEquals(activityPackageUpdateDto.getAvailabilityStartDate(), existingActivityPackage.getAvailabilityStartDate()),
                 () -> assertEquals(activityPackageUpdateDto.getAvailabilityEndDate(), existingActivityPackage.getAvailabilityEndDate()),
-                () -> assertEquals(activityPackageUpdateDto.isVisible(), existingActivityPackage.isVisible())
+                () -> assertEquals(activityPackageCreateDto.getMaxActivitiesPerVolunteer(), existingActivityPackage.getMaxActivitiesPerVolunteer()),
+                () -> assertEquals(activityPackageCreateDto.getMinCoordinatorsToIgnoreLimit(), existingActivityPackage.getMinCoordinatorsToIgnoreLimit()),
+                () -> assertEquals(activityPackageUpdateDto.getIsVisible(), existingActivityPackage.getIsVisible())
         );
     }
 
@@ -168,7 +183,9 @@ class ActivityPackageMapperTest {
                 () -> assertEquals(activityPackage.getType(), existingActivityPackage.getType()),
                 () -> assertEquals(activityPackage.getAvailabilityStartDate(), existingActivityPackage.getAvailabilityStartDate()),
                 () -> assertEquals(activityPackage.getAvailabilityEndDate(), existingActivityPackage.getAvailabilityEndDate()),
-                () -> assertEquals(activityPackageUpdateDtoWithNullAttributes.isVisible(), existingActivityPackage.isVisible())
+                () -> assertEquals(activityPackageCreateDto.getMaxActivitiesPerVolunteer(), existingActivityPackage.getMaxActivitiesPerVolunteer()),
+                () -> assertEquals(activityPackageCreateDto.getMinCoordinatorsToIgnoreLimit(), existingActivityPackage.getMinCoordinatorsToIgnoreLimit()),
+                () -> assertEquals(activityPackageUpdateDtoWithNullAttributes.getIsVisible(), existingActivityPackage.getIsVisible())
         );
     }
 
