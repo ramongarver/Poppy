@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRequest {
 
     private String email;
-    private String password; //TODO: Puede que haya que quitarle el privado
+    private String password;
 
 }
