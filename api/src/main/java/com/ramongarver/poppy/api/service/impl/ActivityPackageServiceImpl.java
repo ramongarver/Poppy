@@ -1,12 +1,17 @@
 package com.ramongarver.poppy.api.service.impl;
 
+import com.ramongarver.poppy.api.dto.activity.ActivityVolunteerAvailabilitiesAndAssignmentsReadDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageCreateDto;
+import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageReducedReadDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageUpdateDto;
+import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerReducedReadDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
 import com.ramongarver.poppy.api.entity.Volunteer;
 import com.ramongarver.poppy.api.exception.ResourceNotFoundException;
 import com.ramongarver.poppy.api.mapper.ActivityPackageMapper;
+import com.ramongarver.poppy.api.mapper.VolunteerMapper;
 import com.ramongarver.poppy.api.repository.ActivityPackageRepository;
 import com.ramongarver.poppy.api.service.ActivityPackageService;
 import com.ramongarver.poppy.api.service.ActivityService;
@@ -14,15 +19,16 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class ActivityPackageServiceImpl implements ActivityPackageService {
 
     private final ActivityPackageMapper activityPackageMapper;
+    private final VolunteerMapper volunteerMapper;
 
     private final ActivityPackageRepository activityPackageRepository;
 
@@ -99,17 +105,43 @@ public class ActivityPackageServiceImpl implements ActivityPackageService {
         return unassignActivitiesFromActivityPackage(activityPackageId, List.of(activityId));
     }
 
-    public Map<Activity, List<Volunteer>> getActivityPackageAssignments(Long activityPackageId) {
+    @Override
+    public ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto getActivityPackageVolunteerAssignments(Long activityPackageId) {
         final ActivityPackage activityPackage = getActivityPackageById(activityPackageId);
-        final List<Activity> activities = activityPackage.getActivities();
+        final ActivityPackageReducedReadDto activityPackageReducedReadDto = activityPackageMapper.toReducedReadDto(activityPackage);
 
-        final Map<Activity, List<Volunteer>> activityPackageAssignments = new HashMap<>();
+        final List<Activity> activities = activityPackage.getActivities();
+        activities.sort(Comparator.comparing(Activity::getLocalDateTime));
+
+        final List<ActivityVolunteerAvailabilitiesAndAssignmentsReadDto> activitiesDto = new ArrayList<>();
 
         for (Activity activity : activities) {
-            activityPackageAssignments.put(activity, activity.getVolunteers());
+            final List<VolunteerReducedReadDto> availabilities = new ArrayList<>();
+            final List<VolunteerReducedReadDto> assignments = new ArrayList<>();
+
+            for (Volunteer volunteer : activity.getVolunteers()) {
+                final VolunteerReducedReadDto volunteerDto = volunteerMapper.toReducedReadDto(volunteer);
+                assignments.add(volunteerDto);
+            }
+
+            final ActivityVolunteerAvailabilitiesAndAssignmentsReadDto activityDto = ActivityVolunteerAvailabilitiesAndAssignmentsReadDto.builder()
+                    .id(activity.getId())
+                    .name(activity.getName())
+                    .description(activity.getDescription())
+                    .localDateTime(activity.getLocalDateTime())
+                    .place(activity.getPlace())
+                    .numberOfCoordinators(activity.getNumberOfCoordinators())
+                    .availabilities(availabilities)
+                    .assignments(assignments)
+                    .build();
+
+            activitiesDto.add(activityDto);
         }
 
-        return activityPackageAssignments;
+        return ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto.builder()
+                .activityPackage(activityPackageReducedReadDto)
+                .activities(activitiesDto)
+                .build();
     }
 
 }

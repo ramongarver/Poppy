@@ -2,12 +2,10 @@ package com.ramongarver.poppy.api.service;
 
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageCreateDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageUpdateDto;
-import com.ramongarver.poppy.api.entity.Activity;
+import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
-import com.ramongarver.poppy.api.entity.Volunteer;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ActivityPackageService {
 
@@ -33,6 +31,6 @@ public interface ActivityPackageService {
 
     ActivityPackage unassignActivityToActivityPackage(Long activityPackageId, Long activityId);
 
-    Map<Activity, List<Volunteer>> getActivityPackageAssignments(Long activityPackageId);
+    ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto getActivityPackageVolunteerAssignments(Long activityPackageId);
 
 }
