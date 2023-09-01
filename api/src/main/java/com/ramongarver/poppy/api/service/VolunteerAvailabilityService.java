@@ -1,5 +1,6 @@
 package com.ramongarver.poppy.api.service;
 
+import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto;
 import com.ramongarver.poppy.api.dto.volunteeravailability.VolunteerAvailabilityCreateDto;
 import com.ramongarver.poppy.api.dto.volunteeravailability.VolunteerAvailabilityUpdateDto;
 import com.ramongarver.poppy.api.entity.VolunteerAvailability;
@@ -17,5 +18,7 @@ public interface VolunteerAvailabilityService {
     VolunteerAvailability updateVolunteerAvailability(Long activityPackageId, Long volunteerId, VolunteerAvailabilityUpdateDto volunteerAvailabilityUpdateDto);
 
     void deleteVolunteerAvailability(Long activityPackageId, Long volunteerId);
+
+    ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto getActivityPackageVolunteerAvailabilities(Long activityPackageId);
 
 }
