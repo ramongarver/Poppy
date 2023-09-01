@@ -25,9 +25,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ActivityAssignmentServiceImpl implements ActivityAssignmentService {
 
-    private static final int MAX_ACTIVITIES_PER_VOLUNTEER = 2;
-    private static final int MIN_COORDINATORS_TO_IGNORE_LIMIT = 3;
-
     private final ActivityPackageService activityPackageService;
 
     private final ActivityService activityService;
@@ -62,10 +59,11 @@ public class ActivityAssignmentServiceImpl implements ActivityAssignmentService 
 
                 // Check if this volunteer can be assigned to another activity for this activity package
                 if (assignedVolunteerIds.size() < numberOfCoordinatorsNeeded
-                        && (currentCount < MAX_ACTIVITIES_PER_VOLUNTEER || numberOfCoordinatorsNeeded >= MIN_COORDINATORS_TO_IGNORE_LIMIT)) {
+                        && (currentCount < activityPackage.getMaxActivitiesPerVolunteer()
+                        || numberOfCoordinatorsNeeded >= activityPackage.getMinCoordinatorsToIgnoreLimit())) {
                     assignedVolunteerIds.add(availableVolunteerId);
 
-                    if (numberOfCoordinatorsNeeded < MIN_COORDINATORS_TO_IGNORE_LIMIT) {
+                    if (numberOfCoordinatorsNeeded < activityPackage.getMinCoordinatorsToIgnoreLimit()) {
                         volunteerActivityCount.put(availableVolunteerId, currentCount + 1);
                     }
                 }
@@ -138,7 +136,7 @@ public class ActivityAssignmentServiceImpl implements ActivityAssignmentService 
     }
 
     private void verifyVolunteersNotAlreadyAssignedToActivitiesInActivityPackage(ActivityPackage activityPackage) {
-        if (activityPackage.isAreVolunteersAssigned()) {
+        if (Boolean.TRUE.equals(activityPackage.getAreVolunteersAssigned())) {
             throw new VolunteersAlreadyAssignedToActivitiesInActivityPackageException(activityPackage.getId());
         }
     }

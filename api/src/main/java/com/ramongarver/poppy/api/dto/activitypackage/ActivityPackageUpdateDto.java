@@ -26,6 +26,10 @@ public class ActivityPackageUpdateDto {
 
     private LocalDate availabilityEndDate;
 
-    private boolean isVisible;
+    private Integer maxActivitiesPerVolunteer;
+
+    private Integer minCoordinatorsToIgnoreLimit;
+
+    private Boolean isVisible;
 
 }

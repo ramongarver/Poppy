@@ -1,6 +1,7 @@
 package com.ramongarver.poppy.api.dto.activitypackage;
 
 import com.ramongarver.poppy.api.enums.ActivityPackageType;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,10 @@ public class ActivityPackageCreateDto {
     @NotNull
     private LocalDate availabilityEndDate;
 
-    private boolean isVisible;
+    private Integer maxActivitiesPerVolunteer;
+
+    private Integer minCoordinatorsToIgnoreLimit;
+
+    private Boolean isVisible;
 
 }

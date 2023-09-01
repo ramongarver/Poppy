@@ -45,8 +45,14 @@ public class ActivityPackage {
     @Column(nullable = false)
     private LocalDate availabilityEndDate;
 
-    @Column(nullable = false, columnDefinition = "boolean default false")
-    private boolean isVisible;
+    @Column(nullable = false, columnDefinition = "int default 2")
+    private Integer maxActivitiesPerVolunteer = 2;
+
+    @Column(nullable = false, columnDefinition = "int default 3")
+    private Integer minCoordinatorsToIgnoreLimit = 3;
+
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private Boolean isVisible = true;
 
     @OneToMany(mappedBy = "activityPackage")
     private List<Activity> activities = new ArrayList<>();
@@ -55,6 +61,6 @@ public class ActivityPackage {
     private List<VolunteerAvailability> volunteerAvailabilities = new ArrayList<>();
 
     @Column(nullable = false, columnDefinition = "boolean default false")
-    private boolean areVolunteersAssigned;
+    private Boolean areVolunteersAssigned = false;
 
 }

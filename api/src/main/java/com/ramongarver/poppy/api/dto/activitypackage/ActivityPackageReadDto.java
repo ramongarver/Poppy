@@ -30,11 +30,15 @@ public class ActivityPackageReadDto {
 
     private LocalDate availabilityEndDate;
 
-    private boolean isVisible;
+    private Integer maxActivitiesPerVolunteer;
+
+    private Integer minCoordinatorsToIgnoreLimit;
+
+    private Boolean isVisible;
 
     private List<Long> activityIds;
 
-    private boolean areVolunteersAssigned;
+    private Boolean areVolunteersAssigned;
 
     private List<VolunteerAvailabilityReadDto> volunteerAvailabilities;
 
