@@ -26,7 +26,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({EmailExistsException.class, VolunteerAlreadyAssignedException.class, VolunteerNotAssignedException.class,
             ResourceAlreadyExistsException.class, ActivityNotInActivityPackageException.class,
-            OutVolunteerAvailabilitySubmissionPeriodException.class, AdminSelfRoleChangeException.class})
+            OutVolunteerAvailabilitySubmissionPeriodException.class, AdminSelfRoleChangeException.class,
+            VolunteersAlreadyAssignedToActivitiesInActivityPackageException.class})
     public ResponseEntity<Object> handleConflictExceptions(RuntimeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
