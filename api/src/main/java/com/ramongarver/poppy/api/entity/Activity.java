@@ -43,7 +43,7 @@ public class Activity {
     @Column(nullable = false)
     private String place;
 
-    @Column(nullable = false, columnDefinition = "int default 1")
+    @Column(nullable = false, columnDefinition = "int default 2")
     private int numberOfCoordinators = 2;
 
     @ManyToMany
