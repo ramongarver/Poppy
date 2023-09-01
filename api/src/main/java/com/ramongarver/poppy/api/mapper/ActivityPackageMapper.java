@@ -2,6 +2,7 @@ package com.ramongarver.poppy.api.mapper;
 
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageCreateDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageReadDto;
+import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageReducedReadDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageUpdateDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
@@ -61,4 +62,12 @@ public class ActivityPackageMapper {
         existingActivityPackage.setVisible(activityUpdateDto.isVisible());
     }
 
+    public ActivityPackageReducedReadDto toReducedReadDto(ActivityPackage activityPackage) {
+        return ActivityPackageReducedReadDto.builder()
+                .id(activityPackage.getId())
+                .name(activityPackage.getName())
+                .description(activityPackage.getDescription())
+                .type(activityPackage.getType())
+                .build();
+    }
 }

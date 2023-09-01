@@ -2,6 +2,7 @@ package com.ramongarver.poppy.api.mapper;
 
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerCreateDto;
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerReadDto;
+import com.ramongarver.poppy.api.dto.volunteer.VolunteerReducedReadDto;
 import com.ramongarver.poppy.api.dto.volunteer.VolunteerUpdateDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.Volunteer;
@@ -58,6 +59,20 @@ public class VolunteerMapper {
                 ? volunteerUpdateDto.getStartDate() : existingVolunteer.getStartDate());
         existingVolunteer.setEndDate(volunteerUpdateDto.getEndDate() != null
                 ? volunteerUpdateDto.getEndDate() : existingVolunteer.getEndDate());
+    }
+
+    public VolunteerReducedReadDto toReducedReadDto(Volunteer volunteer) {
+        return VolunteerReducedReadDto.builder()
+                .id(volunteer.getId())
+                .firstName(volunteer.getFirstName())
+                .lastName(volunteer.getLastName())
+                .build();
+    }
+
+    public List<VolunteerReducedReadDto> toListReducedReadDto(List<Volunteer> volunteers) {
+        return volunteers.stream()
+                .map(this::toReducedReadDto)
+                .toList();
     }
 
 }
