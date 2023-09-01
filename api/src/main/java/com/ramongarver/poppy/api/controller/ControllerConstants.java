@@ -13,6 +13,7 @@ public class ControllerConstants {
     public static final String VOLUNTEERS_RESOURCE = "/volunteers";
     public static final String VOLUNTEERS_RESOURCE_PASSWORD = "/password";
     public static final String VOLUNTEER_AVAILABILITIES_RESOURCE = "/volunteer-availabilities";
+    public static final String VOLUNTEER_ASSIGNMENTS_RESOURCE = "/volunteer-assignments";
     public static final String WORKGROUPS_RESOURCE = "/workgroups";
 
 
@@ -34,5 +35,10 @@ public class ControllerConstants {
     public static final String VOLUNTEERS_ROUTE = API_ROUTE + VOLUNTEERS_RESOURCE;
 
     public static final String WORKGROUPS_ROUTE = API_ROUTE + WORKGROUPS_RESOURCE;
+
+    public static final String CHANGE_ACTION = "/change";
+    public static final String RESET_ACTION = "/reset";
+
+    public static final String PDF_TYPE = "/pdf";
 
 }
