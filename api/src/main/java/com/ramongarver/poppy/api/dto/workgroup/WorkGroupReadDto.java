@@ -25,5 +25,4 @@ public class WorkGroupReadDto {
 
     private List<Long> volunteerIds;
 
-
 }
