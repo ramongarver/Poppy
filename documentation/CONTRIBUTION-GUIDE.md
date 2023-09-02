@@ -4,7 +4,7 @@
 
 Briefly explain what the project is, why it's important, and why contributions are welcomed.
 
-TODO
+TODO: Update PR
 
 ## 🚀 Getting started
 
