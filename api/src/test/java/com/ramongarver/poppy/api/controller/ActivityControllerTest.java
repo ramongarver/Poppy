@@ -93,7 +93,7 @@ class ActivityControllerTest {
         mockMvc.perform(
                         get(ControllerConstants.ACTIVITIES_ROUTE + "/{id}", 1).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.id", is(mockActivity.getId().intValue())))
                 .andExpect(jsonPath("$.name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$.description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$.localDateTime", is("2023-02-10T19:30:00")))
@@ -109,8 +109,8 @@ class ActivityControllerTest {
     @Test
     @WithMockUser
     void testGetAllActivities() throws Exception {
-        List<Activity> activities = List.of(mockActivity);
-        List<ActivityReadDto> activitiesDto = List.of(mockActivityReadDto);
+        final List<Activity> activities = List.of(mockActivity);
+        final List<ActivityReadDto> activitiesDto = List.of(mockActivityReadDto);
 
         when(activityService.getAllActivities()).thenReturn(activities);
         when(activityMapper.toListReadDto(activities)).thenReturn(activitiesDto);
@@ -120,7 +120,7 @@ class ActivityControllerTest {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].id", is(mockActivity.getId().intValue())))
                 .andExpect(jsonPath("$[0].name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$[0].description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$[0].localDateTime", is("2023-02-10T19:30:00")))
@@ -134,7 +134,7 @@ class ActivityControllerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "MANAGER")
     void testCreateActivity() throws Exception {
         when(activityService.createActivity(any(ActivityCreateDto.class))).thenReturn(mockActivity);
 
@@ -144,7 +144,7 @@ class ActivityControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(mockActivity)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.id", is(mockActivity.getId().intValue())))
                 .andExpect(jsonPath("$.name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$.description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$.localDateTime", is("2023-02-10T19:30:00")))
@@ -161,7 +161,7 @@ class ActivityControllerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "MANAGER")
     void testUpdateActivity() throws Exception {
         when(activityService.updateActivity(any(Long.class), any(ActivityUpdateDto.class))).thenReturn(mockActivity);
 
@@ -171,7 +171,7 @@ class ActivityControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(mockActivity)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.id", is(mockActivity.getId().intValue())))
                 .andExpect(jsonPath("$.name", is(mockActivity.getName())))
                 .andExpect(jsonPath("$.description", is(mockActivity.getDescription())))
                 .andExpect(jsonPath("$.localDateTime", is("2023-02-10T19:30:00")))
@@ -188,7 +188,7 @@ class ActivityControllerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "MANAGER")
     void testDeleteActivity() throws Exception {
         doNothing().when(activityService).deleteActivity(anyLong());
 
