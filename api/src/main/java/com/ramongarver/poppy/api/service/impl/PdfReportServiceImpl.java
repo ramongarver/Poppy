@@ -32,6 +32,9 @@ public class PdfReportServiceImpl implements PdfReportService {
 
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final String DATE_TIME_PATTERN = "dd/MM/yyyy HH:mm";
+    private static final String ALL = "";
+    private static final String AVAILABILITIES = "Disponibilidades";
+    private static final String ASSIGNMENTS = "Asignaciones";
     private static final String COORDINATORS_VOLUNTEERS_LABEL = "Coordinadores";
     private static final String AVAILABLE_VOLUNTEERS_LABEL = "Voluntarios disponibles";
 
@@ -42,10 +45,14 @@ public class PdfReportServiceImpl implements PdfReportService {
         final PdfDocument pdf = new PdfDocument(writer);
         final Document document = new Document(pdf);
 
+        final String documentType = PrintOption.ASSIGNMENTS.equals(printOption) ? ASSIGNMENTS
+                : PrintOption.AVAILABILITIES.equals(printOption) ? AVAILABILITIES
+                : ALL;
+
         // Add the name of the activity package in the site
-        final Paragraph activityPackageName = new Paragraph(volunteerAvailabilitiesAndAssignments.getActivityPackage().getName())
+        final Paragraph activityPackageName = new Paragraph(String.format("%s | %s", documentType, volunteerAvailabilitiesAndAssignments.getActivityPackage().getName()))
                 .setTextAlignment(TextAlignment.CENTER)
-                .setFontSize(20)
+                .setFontSize(16)
                 .setBold();
         document.add(activityPackageName);
 

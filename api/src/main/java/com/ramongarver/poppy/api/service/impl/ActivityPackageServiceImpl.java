@@ -9,6 +9,9 @@ import com.ramongarver.poppy.api.dto.volunteer.VolunteerReducedReadDto;
 import com.ramongarver.poppy.api.entity.Activity;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
 import com.ramongarver.poppy.api.entity.Volunteer;
+import com.ramongarver.poppy.api.exception.ActivityAlreadyAssignedToActivityPackageException;
+import com.ramongarver.poppy.api.exception.ActivityNotAssignedToActivityPackageException;
+import com.ramongarver.poppy.api.exception.ActivityNotInActivityPackageException;
 import com.ramongarver.poppy.api.exception.ResourceNotFoundException;
 import com.ramongarver.poppy.api.mapper.ActivityPackageMapper;
 import com.ramongarver.poppy.api.mapper.VolunteerMapper;
@@ -21,7 +24,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -76,33 +81,44 @@ public class ActivityPackageServiceImpl implements ActivityPackageService {
         }
     }
 
+    @Override
     @Transactional
-    public ActivityPackage assignActivitiesToActivityPackage(Long activityPackageId, List<Long> activityIds) {
+    public void assignActivitiesToActivityPackage(Long activityPackageId, List<Long> activityIds) {
         final ActivityPackage activityPackage = getActivityPackageById(activityPackageId);
         final List<Activity> activitiesToAssign = activityService.getActivitiesByIds(activityIds);
 
+        verifyActivitiesNotInOtherPackages(activityPackageId, activitiesToAssign);
+
         activityPackage.getActivities().addAll(activitiesToAssign);
-
-        return activityPackageRepository.save(activityPackage);
+        for (Activity activity : activitiesToAssign) {
+            activity.setActivityPackage(activityPackage);
+        }
     }
 
+    @Override
     @Transactional
-    public ActivityPackage assignActivityToActivityPackage(Long activityPackageId, Long activityId) {
-        return assignActivitiesToActivityPackage(activityPackageId, List.of(activityId));
+    public void assignActivityToActivityPackage(Long activityPackageId, Long activityId) {
+        assignActivitiesToActivityPackage(activityPackageId, List.of(activityId));
     }
 
+    @Override
     @Transactional
-    public ActivityPackage unassignActivitiesFromActivityPackage(Long activityPackageId, List<Long> activityIds) {
+    public void unassignActivitiesFromActivityPackage(Long activityPackageId, List<Long> activityIds) {
         final ActivityPackage activityPackage = getActivityPackageById(activityPackageId);
         final List<Activity> activitiesToUnassign = activityService.getActivitiesByIds(activityIds);
 
-        activityPackage.getActivities().removeAll(activitiesToUnassign);
+        verifyActivitiesBelongToPackage(activityPackageId, activitiesToUnassign);
 
-        return activityPackageRepository.save(activityPackage);
+        activityPackage.getActivities().removeAll(activitiesToUnassign);
+        for (Activity activity : activitiesToUnassign) {
+            activity.setActivityPackage(null);
+        }
     }
 
-    public ActivityPackage unassignActivityToActivityPackage(Long activityPackageId, Long activityId) {
-        return unassignActivitiesFromActivityPackage(activityPackageId, List.of(activityId));
+    @Override
+    @Transactional
+    public void unassignActivityFromActivityPackage(Long activityPackageId, Long activityId) {
+        unassignActivitiesFromActivityPackage(activityPackageId, List.of(activityId));
     }
 
     @Override
@@ -142,6 +158,32 @@ public class ActivityPackageServiceImpl implements ActivityPackageService {
                 .activityPackage(activityPackageReducedReadDto)
                 .activities(activitiesDto)
                 .build();
+    }
+
+    private void verifyActivitiesNotInOtherPackages(Long activityPackageId, List<Activity> activitiesToAssign) {
+        final Map<Long, Long> assignedActivityMap = new HashMap<>();
+        for (Activity activity : activitiesToAssign) {
+            if (activity.getActivityPackage() != null && !activity.getActivityPackage().getId().equals(activityPackageId)) {
+                assignedActivityMap.put(activity.getId(), activity.getActivityPackage().getId());
+            }
+        }
+
+        if (!assignedActivityMap.isEmpty()) {
+            throw new ActivityAlreadyAssignedToActivityPackageException(assignedActivityMap);
+        }
+    }
+
+    private void verifyActivitiesBelongToPackage(Long activityPackageId, List<Activity> activitiesToUnassign) {
+        final Map<Long, Long> missingActivityMap = new HashMap<>();
+        for (Activity activity : activitiesToUnassign) {
+            if (activity.getActivityPackage() == null || !activity.getActivityPackage().getId().equals(activityPackageId)) {
+                missingActivityMap.put(activity.getId(), activity.getActivityPackage().getId());
+            }
+        }
+
+        if (!missingActivityMap.isEmpty()) {
+            throw new ActivityNotAssignedToActivityPackageException(missingActivityMap);
+        }
     }
 
 }
