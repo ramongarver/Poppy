@@ -45,7 +45,7 @@ Testing is a crucial part of the development process in the Poppy project. To ma
   3. Run the tests to ensure they all pass with the updated functionality.
   4. If applicable, add new test cases to cover any new edge cases introduced by your changes.
 
-- **Adding New Functionality**. When introducing new features or functionalities, new tests must be written to cover these additions:
+- **Adding new functionality**. When introducing new features or functionalities, new tests must be written to cover these additions:
   1. Write unit tests that focus on the new functionality, ensuring it works as intended in isolation.
   2. If your feature interacts with other parts of the system, consider adding integration tests.
   3. Make sure to cover edge cases and error-handling scenarios.
