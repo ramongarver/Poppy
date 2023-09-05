@@ -46,4 +46,6 @@ We use JDK 17 with the latest version of Spring Boot 3.X.Y, and our relational d
 
 ## 📚 More documentation 📑
 
-🤝 Want to **contribute to the project**? Join us and let's make a difference together 🔗 [CONTRIBUTION GUIDE](docs/CONTRIBUTION-GUIDE.md)
+🤝 Want to **contribute to the project**? Join us and let's make a difference together 🔗 [Contribution guide](docs/CONTRIBUTION-GUIDE.md)
+
+🚀 Go to the project API swagger documentation 🔗 [Swagger API documentation](https://poppyapi.azurewebsites.net/swagger-ui/index.html)
