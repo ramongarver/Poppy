@@ -1,0 +1,1530 @@
+{
+	"info": {
+		"_postman_id": "118a644e-af17-480a-a4ef-4aac26c785ad",
+		"name": "Poppy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19376596"
+	},
+	"item": [
+		{
+			"name": "Docs",
+			"item": [
+				{
+					"name": "[JSON] Get OpenAPI spec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlProd}}/v3/api-docs",
+							"host": [
+								"{{urlProd}}"
+							],
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[YAML] Get OpenAPI spec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v3/api-docs.yaml",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v3",
+								"api-docs.yaml"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Root",
+			"item": [
+				{
+					"name": "Good new to see this, I'm working! :)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlProd}}/{{api}}/",
+							"host": [
+								"{{urlProd}}"
+							],
+							"path": [
+								"{{api}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health check",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pedro@test.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlProd}}/actuator/health",
+							"host": [
+								"{{urlProd}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ping",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pedro@test.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlProd}}/actuator/health/ping",
+							"host": [
+								"{{urlProd}}"
+							],
+							"path": [
+								"actuator",
+								"health",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pablo.ramirez@poppy-test.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{auth}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{auth}}",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{auth}}/my-account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{auth}}",
+								"my-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Antonio\",\r\n    \"lastName\": \"Gómez\",\r\n    \"email\": \"antonio@test.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlProd}}/{{api}}/{{auth}}/register",
+							"host": [
+								"{{urlProd}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{auth}}",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Volunteers",
+			"item": [
+				{
+					"name": "Get volunteers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a volunteer by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}/101",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a volunteer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Ramón\",\r\n    \"lastName\": \"García\",\r\n    \"email\": \"ramongarver2000@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"role\": \"MANAGER\",\r\n    \"startDate\": \"2022-09-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Pablo (Modificado)\",\r\n    \"lastName\": \"Ramirez Varela\",\r\n    \"email\": \"pablo.ramirez@poppy-test.com\",\r\n    \"role\": \"ADMIN\",\r\n    \"startDate\": \"2022-09-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a volunteer by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}/101",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"password\",\r\n    \"newPassword\": \"contraseña\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}/2/{{password}}/{{change}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}",
+								"2",
+								"{{password}}",
+								"{{change}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"contraseñaReseteada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}/4/{{password}}/{{reset}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}",
+								"4",
+								"{{password}}",
+								"{{reset}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get volunteer activities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{volunteers}}/2/{{activities}}?showOnlyFutureActivities=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{volunteers}}",
+								"2",
+								"{{activities}}"
+							],
+							"query": [
+								{
+									"key": "showOnlyFutureActivities",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Work groups",
+			"item": [
+				{
+					"name": "Get work groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get work group by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a work group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Grupo de nueva creación\",\r\n    \"shortName\": \"TEST\",\r\n    \"description\": \"Este grupo se ha creado con el objetivo de probar la API\",\r\n    \"volunteerIds\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a work group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Inclusión Social (MODIFICADO)\",\r\n    \"shortName\": \"Inclusión Social\",\r\n    \"description\": \"Grupo de trabajo de Inclusión Social\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a work group by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign volunteer to work group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}/1/{{volunteers}}/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}",
+								"1",
+								"{{volunteers}}",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove volunteer from work group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}/1/{{volunteers}}/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}",
+								"1",
+								"{{volunteers}}",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign volunteers to work group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"volunteerIds\": [3, 4, 5]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}/1/{{volunteers}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}",
+								"1",
+								"{{volunteers}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove volunteers to work group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"volunteerIds\": [3, 4, 5]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{workgroups}}/1/{{volunteers}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{workgroups}}",
+								"1",
+								"{{volunteers}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Get activities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an activity by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an activity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Actividad creada para comprobar\",\r\n    \"description\": \"Descripción de la actividad\",\r\n    \"localDateTime\": \"2023-12-10T19:30:00\",\r\n    \"place\": \"Lugar de la actividad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an activity",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Speed dating (MODIFICADO)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an activity by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}/25",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign volunteer to activity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}/13/{{volunteers}}/16",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}",
+								"13",
+								"{{volunteers}}",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove volunteer from activity",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Actividad creada para comprobar\",\r\n    \"description\": \"\",\r\n    \"localDateTime\": \"2023-02-10T19:30:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}/11/{{volunteers}}/20",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}",
+								"11",
+								"{{volunteers}}",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign volunteers to activity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"volunteerIds\": [8, 9]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}/3/{{volunteers}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}",
+								"3",
+								"{{volunteers}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove volunteers from activity",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"volunteerIds\": [7, 8, 9]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activities}}/3/{{volunteers}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activities}}",
+								"3",
+								"{{volunteers}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activity packages",
+			"item": [
+				{
+					"name": "Get activity packages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an activity package by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an activity package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"name\": \"Oficina | Enero 2023\",\r\n    \"description\": \"Paquete de oficina para enero de 2023\",\r\n    \"type\": \"OFFICE\",\r\n    \"availabilityStartDate\": \"2022-12-20\",\r\n    \"availabilityEndDate\": \"2022-12-29\",\r\n    \"minCoordinatorsToIgnoreLimit\": 4,\r\n    \"visible\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an activity package",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Oficina | Enero 2023 (MODIFICADO)\",\r\n    \"visible\": false,\r\n    \"maxActivitiesPerVolunteer\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an activity package by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign activity to activity package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/3/{{activities}}/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"3",
+								"{{activities}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove activity from activity package",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Actividad creada para comprobar\",\r\n    \"description\": \"\",\r\n    \"localDateTime\": \"2023-02-10T19:30:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4/{{activities}}/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4",
+								"{{activities}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign activities to activity package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"activityIds\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/2/{{activities}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"2",
+								"{{activities}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove activities from activity package",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"activityIds\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/1/{{activities}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"1",
+								"{{activities}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Volunteer availabilities",
+			"item": [
+				{
+					"name": "Get volunteer availabilities (JSON) by activity package id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4/{{volunteer-availabilities}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4",
+								"{{volunteer-availabilities}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get volunteer availabilities (PDF) by activity package id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4/{{volunteer-availabilities}}/{{pdf}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4",
+								"{{volunteer-availabilities}}",
+								"{{pdf}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get volunteer availability by activity package id and volunteer id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4/{{volunteer-availabilities}}/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4",
+								"{{volunteer-availabilities}}",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create volunteer availability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"activityIds\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/2/{{volunteer-availabilities}}/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"2",
+								"{{volunteer-availabilities}}",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update volunteer availability",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"activityIds\": [1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/2/{{volunteer-availabilities}}/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"2",
+								"{{volunteer-availabilities}}",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove volunteer availability",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/2/{{volunteer-availabilities}}/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"2",
+								"{{volunteer-availabilities}}",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Volunteer assignments",
+			"item": [
+				{
+					"name": "Assign volunteers to activities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"visible\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4/{{volunteer-assignments}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4",
+								"{{volunteer-assignments}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get volunteer assignments (JSON) by activity package id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"visible\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4/{{volunteer-assignments}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4",
+								"{{volunteer-assignments}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get volunteer assignments (PDF) by activity package id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"visible\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{api}}/{{activity-packages}}/4/{{volunteer-assignments}}/{{pdf}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"{{activity-packages}}",
+								"4",
+								"{{volunteer-assignments}}",
+								"{{pdf}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYWJsby5yYW1pcmV6QHBvcHB5LXRlc3QuY29tIiwiaWF0IjoxNjkzOTI2ODU5LCJleHAiOjE2OTM5MzQwNTl9.7z-ySoZMxYcSbwoA3pavRrEnQdPFc0Tmgqte3TmzFd4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "urlProd",
+			"value": "https://poppyapi.azurewebsites.net/",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "http://{{host}}:{{port}}",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"key": "api",
+			"value": "api",
+			"type": "string"
+		},
+		{
+			"key": "docs",
+			"value": "docs",
+			"type": "string"
+		},
+		{
+			"key": "auth",
+			"value": "account",
+			"type": "string"
+		},
+		{
+			"key": "users",
+			"value": "users",
+			"type": "string"
+		},
+		{
+			"key": "volunteers",
+			"value": "volunteers",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "reset",
+			"value": "reset",
+			"type": "string"
+		},
+		{
+			"key": "change",
+			"value": "change",
+			"type": "string"
+		},
+		{
+			"key": "workgroups",
+			"value": "workgroups",
+			"type": "string"
+		},
+		{
+			"key": "activities",
+			"value": "activities",
+			"type": "string"
+		},
+		{
+			"key": "activity-packages",
+			"value": "activity-packages",
+			"type": "string"
+		},
+		{
+			"key": "volunteer-availabilities",
+			"value": "volunteer-availabilities",
+			"type": "string"
+		},
+		{
+			"key": "volunteer-assignments",
+			"value": "volunteer-assignments",
+			"type": "string"
+		},
+		{
+			"key": "pdf",
+			"value": "pdf",
+			"type": "string"
+		}
+	]
+}

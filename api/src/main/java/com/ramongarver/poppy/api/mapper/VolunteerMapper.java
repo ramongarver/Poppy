@@ -30,8 +30,10 @@ public class VolunteerMapper {
                 .role(volunteer.getRole())
                 .startDate(volunteer.getStartDate())
                 .endDate(volunteer.getEndDate())
-                .workGroupIds(volunteer.getWorkGroups().stream().map(WorkGroup::getId).toList())
-                .activityIds(volunteer.getActivities().stream().map(Activity::getId).toList())
+                .workGroupIds(volunteer.getWorkGroups() != null
+                        ? volunteer.getWorkGroups().stream().map(WorkGroup::getId).toList() : List.of())
+                .activityIds(volunteer.getActivities() != null
+                        ? volunteer.getActivities().stream().map(Activity::getId).toList() : List.of())
                 .build();
     }
 

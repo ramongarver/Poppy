@@ -4,6 +4,7 @@ import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageCreateDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageUpdateDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto;
 import com.ramongarver.poppy.api.entity.ActivityPackage;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -23,13 +24,17 @@ public interface ActivityPackageService {
 
     void verifyActivityPackageExists(Long activityPackageId);
 
-    ActivityPackage assignActivitiesToActivityPackage(Long activityPackageId, List<Long> activityIds);
+    @Transactional
+    void assignActivitiesToActivityPackage(Long activityPackageId, List<Long> activityIds);
 
-    ActivityPackage assignActivityToActivityPackage(Long activityPackageId, Long activityId);
+    @Transactional
+    void assignActivityToActivityPackage(Long activityPackageId, Long activityId);
 
-    ActivityPackage unassignActivitiesFromActivityPackage(Long activityPackageId, List<Long> activityIds);
+    @Transactional
+    void unassignActivitiesFromActivityPackage(Long activityPackageId, List<Long> activityIds);
 
-    ActivityPackage unassignActivityToActivityPackage(Long activityPackageId, Long activityId);
+    @Transactional
+    void unassignActivityFromActivityPackage(Long activityPackageId, Long activityId);
 
     ActivityPackageVolunteerAvailabilitiesAndAssignmentsDto getActivityPackageVolunteerAssignments(Long activityPackageId);
 

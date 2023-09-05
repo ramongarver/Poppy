@@ -1,5 +1,6 @@
 package com.ramongarver.poppy.api.controller;
 
+import com.ramongarver.poppy.api.dto.activity.ActivityIdsDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageCreateDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageReadDto;
 import com.ramongarver.poppy.api.dto.activitypackage.ActivityPackageUpdateDto;
@@ -116,6 +117,58 @@ public class ActivityPackageController {
     public ResponseEntity<String> deleteActivity(@PathVariable("activityPackageId") Long activityPackageId) {
         activityPackageService.deleteActivityPackage(activityPackageId);
         return new ResponseEntity<>("Activity successfully deleted!", HttpStatus.NO_CONTENT);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
+    @PostMapping("{activityPackageId}" + ControllerConstants.ACTIVITIES_RESOURCE + "/{activityId}")
+    @Operation(summary = "Assign an activity to a specific activity package",
+            responses = {
+                    @ApiResponse(responseCode = "200")
+            }
+    )
+    public ResponseEntity<Void> assignActivityToActivityPackage(@PathVariable("activityPackageId") Long activityPackageId,
+                                                          @PathVariable("activityId") Long activityId) {
+        activityPackageService.assignActivityToActivityPackage(activityPackageId, activityId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
+    @DeleteMapping("{activityPackageId}" + ControllerConstants.ACTIVITIES_RESOURCE + "/{activityId}")
+    @Operation(summary = "Unassign an activity from a specific activity package",
+            responses = {
+                    @ApiResponse(responseCode = "200")
+            }
+    )
+    public ResponseEntity<Void> unassignActivityFromActivityPackage(@PathVariable("activityPackageId") Long activityPackageId,
+                                                            @PathVariable("activityId") Long activityId) {
+        activityPackageService.unassignActivityFromActivityPackage(activityPackageId, activityId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
+    @PostMapping("{activityPackageId}" + ControllerConstants.ACTIVITIES_RESOURCE)
+    @Operation(summary = "Assign activities to a specific activity package (in bulk)",
+            responses = {
+                    @ApiResponse(responseCode = "200")
+            }
+    )
+    public ResponseEntity<Void> assignActivitiesToActivityPackage(@PathVariable("activityPackageId") Long activityPackageId,
+                                                           @RequestBody ActivityIdsDto activityIdsDto) {
+        activityPackageService.assignActivitiesToActivityPackage(activityPackageId, activityIdsDto.getActivityIds());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
+    @DeleteMapping("{activityPackageId}" + ControllerConstants.ACTIVITIES_RESOURCE)
+    @Operation(summary = "Unassign activities from a specific activity package (in bulk)",
+            responses = {
+                    @ApiResponse(responseCode = "200")
+            }
+    )
+    public ResponseEntity<Void> unassignActivitiesFromActivityPackage(@PathVariable("activityPackageId") Long activityId,
+                                                             @RequestBody ActivityIdsDto activityIdsDto) {
+        activityPackageService.unassignActivitiesFromActivityPackage(activityId, activityIdsDto.getActivityIds());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PreAuthorize("hasRole('ADMIN') OR hasRole('MANAGER')")
