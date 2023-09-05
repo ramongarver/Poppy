@@ -42,7 +42,7 @@ Some Spring Boot application configurations are made explicit through YAML prope
 
 We use JDK 17 with the latest version of Spring Boot 3.X.Y, and our relational database of choice is MySQL.
 
-![Arquitectura del sistema](docs/img/architecture.png)
+![System architecture](docs/img/architecture.png)
 
 ## 📚 More documentation 📑
 
