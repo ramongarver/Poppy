@@ -122,6 +122,8 @@ class ActivityPackageMapperTest {
                 () -> assertEquals(activityPackage.getType(), result.getType()),
                 () -> assertEquals(activityPackage.getAvailabilityStartDate(), result.getAvailabilityStartDate()),
                 () -> assertEquals(activityPackage.getAvailabilityEndDate(), result.getAvailabilityEndDate()),
+                () -> assertEquals(activityPackage.getMaxActivitiesPerVolunteer(), result.getMaxActivitiesPerVolunteer()),
+                () -> assertEquals(activityPackage.getMinCoordinatorsToIgnoreLimit(), result.getMinCoordinatorsToIgnoreLimit()),
                 () -> assertEquals(activityPackage.getIsVisible(), result.getIsVisible()),
                 () -> assertTrue(result.getActivityIds().isEmpty()),
                 () -> assertEquals(activityPackage.getAreVolunteersAssigned(), result.getAreVolunteersAssigned())
